@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### I tilfelle vi tuller rundt ###
-gitignore
-src/main/
+/gitignore
+/src/main/
