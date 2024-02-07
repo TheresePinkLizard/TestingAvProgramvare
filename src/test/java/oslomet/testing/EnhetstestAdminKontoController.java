@@ -9,6 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.AdminKontoController;
 import oslomet.testing.DAL.AdminRepository;
 import oslomet.testing.Models.Konto;
+import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,42 +26,38 @@ public class EnhetstestAdminKontoController {
     @Mock
     private AdminRepository aRepository;
 
-    // hent alle
+    @Mock
+    private Sikkerhet sjekk;
+
+    // hent alle // ---TEST GODKJENT-----
     @Test
     public void hentAlleKontoTest() {
         // lage en list med kontoer
         List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
-        //kjører en mock når
-        Mockito.when(aRepository.hentAlleKonti(anyString())).thenReturn(kontoer);
-        //henter faktiske kontoer
-        List<Konto> resultat= aRepository.hentAlleKonti();
+        // setter opp mock når sjekk.LoggetInn() blir kalt
+        Mockito.when(sjekk.loggetInn()).thenReturn("12345678901");
+        //Setter opp et mock når aRepository.hentAlleKonti() blir kalt
+        Mockito.when(aRepository.hentAlleKonti()).thenReturn(kontoer);
+        //henter faktiske kontoer fra kontocontroller
+        List<Konto> resultat= kontoController.hentAlleKonti();
         // sammenligner resultat og ser om vi får tilbake det vi har sendt
         assertEquals(kontoer, resultat);
     }
 
-    //registrer
+    //registrer    // ----TEST GODKJENT----
     @Test
-    public void registrerKontoFinnesFraFørTest(){
+    public void registrerKontoTest(){
         // lager ny konto
         Konto konto = new Konto();
-        Mockito.when(aRepository.registrerKonto(konto.getPersonnummer())).thenReturn(konto);
+        Mockito.when(sjekk.loggetInn()).thenReturn("12345678901");
+        Mockito.when(aRepository.registrerKonto(konto)).thenReturn("OK");
 
-        String resultat = aRepository.registrerKonto(konto);
+        String resultat = kontoController.registrerKonto(konto);
 
-        assertEquals("Feil", resultat);
+        assertEquals("OK", resultat);
     }
-    public void registrerKontoException(){
-        Konto konto = new Konto();
-        Mockito.when(aRepository.registrerKonto
-        String resultat = aRepository.registrerKonto(konto);
-        assertEquals("Feil", resultat);
+    /*
 
-    }
-    public void registrerKontoAltGikkBra(){
-        Konto konto = new Konto();
-
-        
-    }
     //endre
     @Test
     public void endreKontoTest(){
@@ -84,4 +81,6 @@ public class EnhetstestAdminKontoController {
     public void slettKontoReturn(){
 
     }
+
+ */
 }
