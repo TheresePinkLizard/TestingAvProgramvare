@@ -56,31 +56,31 @@ public class EnhetstestAdminKontoController {
 
         assertEquals("OK", resultat);
     }
-    /*
 
-    //endre
+
+    //endre // ----TEST GODKJENT----
     @Test
     public void endreKontoTest(){
+        Konto konto = new Konto();
 
+        Mockito.when(sjekk.loggetInn()).thenReturn("12345678901");
+        Mockito.when(aRepository.endreKonto(konto)).thenReturn("OK");
+
+        String resultat = kontoController.endreKonto(konto);
+
+        assertEquals("OK", resultat);
     }
-    public void endreKontoException(){
 
-    }
-    public void endreKontoReturn(){
-
-    }
-
-    //slett
+    //slett // ---TEST GODKJENT-----
     @Test
     public void slettKontoTest(){
+        String kontonummer = "12345678901";
 
+        Mockito.when(sjekk.loggetInn()).thenReturn("test");
+        Mockito.when(aRepository.slettKonto(kontonummer)).thenReturn("Slettet");
+
+        String resultat = kontoController.slettKonto(kontonummer);
+        assertEquals("Slettet", resultat);
     }
-    public void slettKontoException(){
 
-    }
-    public void slettKontoReturn(){
-
-    }
-
- */
 }
