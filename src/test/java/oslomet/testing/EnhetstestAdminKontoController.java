@@ -19,13 +19,11 @@ import static org.mockito.ArgumentMatchers.anyString;
 @RunWith(MockitoJUnitRunner.class)
 public class EnhetstestAdminKontoController {
 
-
     @InjectMocks
     private AdminKontoController kontoController;
 
     @Mock
     private AdminRepository aRepository;
-
 
     // hent alle
     @Test
@@ -35,21 +33,33 @@ public class EnhetstestAdminKontoController {
         //kjører en mock når
         Mockito.when(aRepository.hentAlleKonti(anyString())).thenReturn(kontoer);
         //henter faktiske kontoer
-        List<Konto> faktiskeKontoer = aRepository.hentAlleKonti();
-        // sammenligner
-        assertEquals(kontoer, faktiskeKontoer);
+        List<Konto> resultat= aRepository.hentAlleKonti();
+        // sammenligner resultat og ser om vi får tilbake det vi har sendt
+        assertEquals(kontoer, resultat);
     }
 
     //registrer
     @Test
-    public void registrerKontoTest(){
+    public void registrerKontoFinnesFraFørTest(){
+        // lager ny konto
+        Konto konto = new Konto();
+        Mockito.when(aRepository.registrerKonto(konto.getPersonnummer())).thenReturn(konto);
 
+        String resultat = aRepository.registrerKonto(konto);
+
+        assertEquals("Feil", resultat);
     }
     public void registrerKontoException(){
+        Konto konto = new Konto();
+        Mockito.when(aRepository.registrerKonto
+        String resultat = aRepository.registrerKonto(konto);
+        assertEquals("Feil", resultat);
 
     }
-    public void registrerKontoReturn(){
+    public void registrerKontoAltGikkBra(){
+        Konto konto = new Konto();
 
+        
     }
     //endre
     @Test
