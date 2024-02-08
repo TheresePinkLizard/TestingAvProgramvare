@@ -1,5 +1,6 @@
 package oslomet.testing;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,31 @@ public class EnhetstestSikkerhetController {
 
     MockHttpSession session;
 
+    @Before
+    // Nødvendig for å sette en session-attributt før kallet til controlleren.
+    public void initSession(){
+        Map<String, Object> attributes = new HashMap<String, Object>();
+
+        doAnswer(new Answer<Object>() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                String key = (String) invocation.getArguments()[0];
+                return attributes.get(key);
+            }
+        }).when(session).getAttribute(anyString());
+
+        doAnswer(new Answer<Object>() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                String key = (String) invocation.getArguments()[0];
+                Object value = invocation.getArguments()[1];
+                attributes.put(key, value);
+                return null;
+            }
+        }).when(session).setAttribute(anyString(), any());
+
+    }
+
     @Test
     public void testSjekkLoggInn() {
         when(repository.sjekkLoggInn(anyString(), anyString())).thenReturn("OK");
@@ -40,58 +66,29 @@ public class EnhetstestSikkerhetController {
 
     @Test
     public void testInnlogget() {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-
-        doAnswer(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                String key = (String) invocation.getArguments()[0];
-                return attributes.get(key);
-            }
-        }).when(session).getAttribute(anyString());
-
-        doAnswer(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                String key = (String) invocation.getArguments()[0];
-                Object value = invocation.getArguments()[1];
-                attributes.put(key, value);
-                return null;
-            }
-        }).when(session).setAttribute(anyString(), any());
 
         session.setAttribute("Innlogget", "12345678901");
         String resultat = sikkerhetsController.loggetInn();
         assertEquals("12345678901", resultat);
+
     }
 
     @Test
     public void testLoggInnAdmin(){
 
-        Map<String, Object> attributes = new HashMap<String, Object>();
-
-        doAnswer(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                String key = (String) invocation.getArguments()[0];
-                return attributes.get(key);
-            }
-        }).when(session).getAttribute(anyString());
-
-        doAnswer(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                String key = (String) invocation.getArguments()[0];
-                Object value = invocation.getArguments()[1];
-                attributes.put(key, value);
-                return null;
-            }
-        }).when(session).setAttribute(anyString(), any());
-
         session.setAttribute("Innlogget", "Admin");
         String resultat = sikkerhetsController.loggetInn();
         assertEquals("Admin", resultat);
+
     }
+
+    @Test
+    public void testLoggUt(){
+        session.setAttribute("Innlogget", null);
+        String resultat = sikkerhetsController.loggetInn();
+        assertEquals(null, resultat);
+    }
+
 }
 
 
