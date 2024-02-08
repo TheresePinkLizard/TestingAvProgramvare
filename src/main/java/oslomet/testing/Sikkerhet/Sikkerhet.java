@@ -7,6 +7,7 @@ import oslomet.testing.DAL.BankRepository;
 
 import javax.servlet.http.HttpSession;
 
+@SuppressWarnings("ALL")
 @RestController
 public class Sikkerhet {
     @Autowired
