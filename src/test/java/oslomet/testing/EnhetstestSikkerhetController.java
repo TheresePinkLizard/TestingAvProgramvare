@@ -81,6 +81,14 @@ public class EnhetstestSikkerhetController {
         assertEquals("Admin", resultat);
 
     }
+
+    @Test
+    public void testLoggUt(){
+        session.setAttribute("Innlogget", null);
+        String resultat = sikkerhetsController.loggetInn();
+        assertEquals(null, resultat);
+    }
+
 }
 
 
