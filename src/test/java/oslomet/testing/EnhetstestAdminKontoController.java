@@ -76,7 +76,7 @@ public class EnhetstestAdminKontoController {
     public void slettKontoTest(){
         String kontonummer = "12345678901";
 
-        Mockito.when(sjekk.loggetInn()).thenReturn("test");
+        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
         Mockito.when(aRepository.slettKonto(kontonummer)).thenReturn("Slettet");
 
         String resultat = kontoController.slettKonto(kontonummer);
