@@ -54,7 +54,7 @@ public class EnhetstestAdminKundeController {
     @Test
     public void testEndre() {
         when(sjekk.loggetInn()).thenReturn("logg inn bruker");
-        Kunde kunde1 = new Kunde(/* Initialiser med nødvendige data */);
+        Kunde kunde1 = new Kunde();
         when(repository.endreKundeInfo(kunde1)).thenReturn("Suksess");
         String resultat = adminKundeController.endre(kunde1);
         assertEquals("Suksess", resultat);
