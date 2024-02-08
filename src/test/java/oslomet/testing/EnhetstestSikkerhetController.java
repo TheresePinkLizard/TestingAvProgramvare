@@ -33,6 +33,7 @@ public class EnhetstestSikkerhetController {
     MockHttpSession session;
 
     @Before
+    // Nødvendig for å sette en session-attributt før kallet til controlleren.
     public void initSession(){
         Map<String, Object> attributes = new HashMap<String, Object>();
 
