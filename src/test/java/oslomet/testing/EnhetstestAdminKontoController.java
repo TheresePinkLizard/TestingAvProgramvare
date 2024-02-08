@@ -24,7 +24,7 @@ public class EnhetstestAdminKontoController {
     private AdminKontoController kontoController;
 
     @Mock
-    private AdminRepository aRepository;
+    private AdminRepository repository;
 
     @Mock
     private Sikkerhet sjekk;
@@ -34,12 +34,16 @@ public class EnhetstestAdminKontoController {
     public void hentAlleKontoTest() {
         // lage en list med kontoer
         List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
+
         // setter opp mock når sjekk.LoggetInn() blir kalt
-        Mockito.when(sjekk.loggetInn()).thenReturn("12345678901");
+        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+
         //Setter opp et mock når aRepository.hentAlleKonti() blir kalt
-        Mockito.when(aRepository.hentAlleKonti()).thenReturn(kontoer);
+        Mockito.when(repository.hentAlleKonti()).thenReturn(kontoer);
+
         //henter faktiske kontoer fra kontocontroller
         List<Konto> resultat= kontoController.hentAlleKonti();
+
         // sammenligner resultat og ser om vi får tilbake det vi har sendt
         assertEquals(kontoer, resultat);
     }
@@ -49,8 +53,8 @@ public class EnhetstestAdminKontoController {
     public void registrerKontoTest(){
         // lager ny konto
         Konto konto = new Konto();
-        Mockito.when(sjekk.loggetInn()).thenReturn("12345678901");
-        Mockito.when(aRepository.registrerKonto(konto)).thenReturn("OK");
+        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+        Mockito.when(repository.registrerKonto(konto)).thenReturn("OK");
 
         String resultat = kontoController.registrerKonto(konto);
 
@@ -63,8 +67,8 @@ public class EnhetstestAdminKontoController {
     public void endreKontoTest(){
         Konto konto = new Konto();
 
-        Mockito.when(sjekk.loggetInn()).thenReturn("12345678901");
-        Mockito.when(aRepository.endreKonto(konto)).thenReturn("OK");
+        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+        Mockito.when(repository.endreKonto(konto)).thenReturn("OK");
 
         String resultat = kontoController.endreKonto(konto);
 
@@ -77,7 +81,7 @@ public class EnhetstestAdminKontoController {
         String kontonummer = "12345678901";
 
         Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
-        Mockito.when(aRepository.slettKonto(kontonummer)).thenReturn("Slettet");
+        Mockito.when(repository.slettKonto(kontonummer)).thenReturn("Slettet");
 
         String resultat = kontoController.slettKonto(kontonummer);
         assertEquals("Slettet", resultat);
