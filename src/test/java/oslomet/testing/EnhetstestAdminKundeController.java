@@ -13,7 +13,7 @@ import oslomet.testing.Sikkerhet.Sikkerhet;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -33,39 +33,73 @@ public class EnhetstestAdminKundeController {
 
     @Test
     public void testLagreKunde() {
-
-        when(sjekk.loggetInn()).thenReturn("Logg inn Bruker");
+        when(sjekk.loggetInn()).thenReturn("Innlogget");
         List<Kunde> forventedeKunder = new ArrayList<>();
         when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
         List<Kunde> ekteKunder = adminKundeController.hentAlle();
         assertEquals(forventedeKunder, ekteKunder);
-
     }
+
+    @Test
+    public void testLagreKunde_ikkeLoggetInn()    {
+        when(sjekk.loggetInn()).thenReturn(null);
+        List<Kunde> forventedeKunder = new ArrayList<>();
+        when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
+        List<Kunde> ekteKunder = adminKundeController.hentAlle();
+        assertNull(ekteKunder);
+    }
+
     @Test
     public void testHentAlle(){
-        when(sjekk.loggetInn()).thenReturn("Logg inn Bruker");
+        when(sjekk.loggetInn()).thenReturn("Innlogget");
         List<Kunde> forventedeKunder = new ArrayList<>();
         when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
         List<Kunde> ekteKunder = adminKundeController.hentAlle();
         assertEquals(forventedeKunder, ekteKunder);
+    }
 
+    @Test
+    public void testHentAlle_ikkeLoggetInn(){
+        when(sjekk.loggetInn()).thenReturn(null);
+        List<Kunde> forventedeKunder = new ArrayList<>();
+        when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
+        List<Kunde> ekteKunder = adminKundeController.hentAlle();
+        assertNull(ekteKunder);
     }
 
     @Test
     public void testEndre() {
-        when(sjekk.loggetInn()).thenReturn("logg inn bruker");
+        when(sjekk.loggetInn()).thenReturn("Innlogget");
         Kunde kunde1 = new Kunde();
-        when(repository.endreKundeInfo(kunde1)).thenReturn("Suksess");
+        when(repository.endreKundeInfo(kunde1)).thenReturn("OK");
         String resultat = adminKundeController.endre(kunde1);
-        assertEquals("Suksess", resultat);
+        assertEquals("OK", resultat);
+    }
+
+    @Test
+    public void testEndre_ikkeLoggetInn() {
+        when(sjekk.loggetInn()).thenReturn(null);
+        Kunde kunde1 = new Kunde();
+        when(repository.endreKundeInfo(kunde1)).thenReturn("OK");
+        String resultat = adminKundeController.endre(kunde1);
+        assertEquals("Ikke logget inn", resultat);
     }
 
     @Test
     public void testSlett() {
-        when(sjekk.loggetInn()).thenReturn("logg inn bruker");
+        when(sjekk.loggetInn()).thenReturn("Innlogget");
         String personnummer = "123456789";
-        when(repository.slettKunde(personnummer)).thenReturn("Kunde slettet");
+        when(repository.slettKunde(personnummer)).thenReturn("OK");
         String resultat = adminKundeController.slett(personnummer);
-        assertEquals("Kunde slettet", resultat);
+        assertEquals("OK", resultat);
+    }
+
+    @Test
+    public void testSlett_ikkeLoggetInn() {
+        when(sjekk.loggetInn()).thenReturn(null);
+        String personnummer = "123456789";
+        when(repository.slettKunde(personnummer)).thenReturn("OK");
+        String resultat = adminKundeController.slett(personnummer);
+        assertEquals("Ikke logget inn", resultat);
     }
 }

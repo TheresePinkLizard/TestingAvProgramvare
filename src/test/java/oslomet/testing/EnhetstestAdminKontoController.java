@@ -37,7 +37,7 @@ public class EnhetstestAdminKontoController {
         List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
 
         // setter opp mock når sjekk.LoggetInn() blir kalt
-        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+        Mockito.when(sjekk.loggetInn()).thenReturn("Innlogget");
 
         //Setter opp et mock når aRepository.hentAlleKonti() blir kalt
         Mockito.when(repository.hentAlleKonti()).thenReturn(kontoer);
@@ -67,7 +67,7 @@ public class EnhetstestAdminKontoController {
     public void registrerKontoTest(){
         // lager ny konto
         Konto konto = new Konto();
-        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+        Mockito.when(sjekk.loggetInn()).thenReturn("Innlogget");
         Mockito.when(repository.registrerKonto(konto)).thenReturn("OK");
 
         String resultat = kontoController.registrerKonto(konto);
@@ -88,12 +88,13 @@ public class EnhetstestAdminKontoController {
         assertEquals("Ikke innlogget", resultat);
     }
 
+
     //endre // ----TEST GODKJENT----
     @Test
     public void endreKontoTest(){
         Konto konto = new Konto();
 
-        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+        Mockito.when(sjekk.loggetInn()).thenReturn("Innlogget");
         Mockito.when(repository.endreKonto(konto)).thenReturn("OK");
 
         String resultat = kontoController.endreKonto(konto);
@@ -118,7 +119,7 @@ public class EnhetstestAdminKontoController {
     public void slettKontoTest(){
         String kontonummer = "12345678901";
 
-        Mockito.when(sjekk.loggetInn()).thenReturn("LoggetInn");
+        Mockito.when(sjekk.loggetInn()).thenReturn("Innlogget");
         Mockito.when(repository.slettKonto(kontonummer)).thenReturn("Slettet");
 
         String resultat = kontoController.slettKonto(kontonummer);
@@ -134,5 +135,5 @@ public class EnhetstestAdminKontoController {
         String resultat = kontoController.slettKonto(kontonummer);
         assertEquals("Ikke innlogget", resultat);
     }
-    
+
 }
