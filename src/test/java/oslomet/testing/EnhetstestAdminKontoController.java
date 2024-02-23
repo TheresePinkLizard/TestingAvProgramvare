@@ -49,6 +49,26 @@ public class EnhetstestAdminKontoController {
         assertEquals(kontoer, resultat);
     }
 
+    // INTERESSANT: Systemet vil kun avslå din tilgang om repository-metoden returnerer null!
+    // Så man kan legit få repositorien til å returnere hva man vil og man kommer seg inn...
+    @Test
+    public void hentAlleKontoTest_feil() {
+        // lage en list med kontoer
+        List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
+
+        // setter opp mock når sjekk.LoggetInn() blir kalt
+        Mockito.when(sjekk.loggetInn()).thenReturn("flkgdkfølgkdjlf");
+
+        //Setter opp et mock når aRepository.hentAlleKonti() blir kalt
+        Mockito.when(repository.hentAlleKonti()).thenReturn(kontoer);
+
+        //henter faktiske kontoer fra kontocontroller
+        List<Konto> resultat = kontoController.hentAlleKonti();
+
+        // sammenligner resultat og ser om vi får tilbake det vi har sendt
+        assertEquals(kontoer, resultat);
+    }
+
     // Sjekker at resultat ikke kommer om man ikke er logget inn:
     @Test
     public void hentAlleKontoTest_ikkeLoggetInn()   {
