@@ -14,7 +14,8 @@ import oslomet.testing.Sikkerhet.Sikkerhet;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,10 +43,23 @@ public class EnhetstestAdminKontoController {
         Mockito.when(repository.hentAlleKonti()).thenReturn(kontoer);
 
         //henter faktiske kontoer fra kontocontroller
-        List<Konto> resultat= kontoController.hentAlleKonti();
+        List<Konto> resultat = kontoController.hentAlleKonti();
 
         // sammenligner resultat og ser om vi får tilbake det vi har sendt
         assertEquals(kontoer, resultat);
+    }
+
+    // Sjekker at resultat ikke kommer om man ikke er logget inn:
+    @Test
+    public void hentAlleKontoTest_ikkeLoggetInn()   {
+        // setter opp mock når sjekk.LoggetInn() blir kalt
+        Mockito.when(sjekk.loggetInn()).thenReturn(null);
+
+        //henter faktiske kontoer fra kontocontroller
+        List<Konto> resultat = kontoController.hentAlleKonti();
+
+        // sjekker om resultatet blir dermed "0".
+        assertNull(resultat);
     }
 
     //registrer    // ----TEST GODKJENT----
@@ -61,6 +75,18 @@ public class EnhetstestAdminKontoController {
         assertEquals("OK", resultat);
     }
 
+    @Test
+    public void registrerKontoTest_ikkeLoggetInn()    {
+
+        // lager ny konto
+        Konto konto = new Konto();
+        Mockito.when(sjekk.loggetInn()).thenReturn(null);
+        Mockito.when(repository.registrerKonto(konto)).thenReturn("OK");
+
+        String resultat = kontoController.registrerKonto(konto);
+
+        assertEquals("Ikke innlogget", resultat);
+    }
 
     //endre // ----TEST GODKJENT----
     @Test
@@ -75,6 +101,18 @@ public class EnhetstestAdminKontoController {
         assertEquals("OK", resultat);
     }
 
+    @Test
+    public void endreKontoTest_ikkeLoggetInn(){
+        Konto konto = new Konto();
+
+        Mockito.when(sjekk.loggetInn()).thenReturn(null);
+        Mockito.when(repository.endreKonto(konto)).thenReturn("OK");
+
+        String resultat = kontoController.endreKonto(konto);
+
+        assertEquals("Ikke innlogget", resultat);
+    }
+
     //slett // ---TEST GODKJENT-----
     @Test
     public void slettKontoTest(){
@@ -87,4 +125,14 @@ public class EnhetstestAdminKontoController {
         assertEquals("Slettet", resultat);
     }
 
+    @Test
+    public void slettKontoTest_ikkeLoggetInn(){
+        String kontonummer = "12345678901";
+
+        Mockito.when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = kontoController.slettKonto(kontonummer);
+        assertEquals("Ikke innlogget", resultat);
+    }
+    
 }
