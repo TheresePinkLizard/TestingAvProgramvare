@@ -1,6 +1,7 @@
 package oslomet.testing;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,8 +15,7 @@ import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -36,45 +36,51 @@ public class EnhetstestBankController {
 
     @Test
     public void hentTransaksjoner_loggetInn()   {
-        Transaksjon transaksjon = new Transaksjon(12345, "1234567890", 1234, "15122002", "Vær så god!", "Ja", "0987654321");
-
-        when(sjekk.loggetInn()).thenReturn("01010110523");
-    }
-
-    @Test
-    public void hentKundeInfo_loggetInn() {
-
-        // arrange
-        Kunde enKunde = new Kunde("01010110523",
-                "Lene", "Jensen", "Askerveien 22", "3270",
-                "Asker", "22224444", "HeiHei");
+        ArrayList<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
-        when(repository.hentKundeInfo(anyString())).thenReturn(enKunde);
+        when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
 
-        // act
-        Kunde resultat = bankController.hentKundeInfo();
+        Konto resultat = bankController.hentTransaksjoner("123456789", "", "");
 
-        // assert
-        assertEquals(enKunde, resultat);
+        assertNotNull(resultat);
+        assertEquals(konto, resultat);
     }
 
     @Test
-    public void hentKundeInfo_IkkeloggetInn() {
+    public void hentTransaksjoner_ikkeLoggetInn()   {
+        ArrayList<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
-        // arrange
+        when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
+
         when(sjekk.loggetInn()).thenReturn(null);
 
-        //act
-        Kunde resultat = bankController.hentKundeInfo();
+        Konto resultat = bankController.hentTransaksjoner("123456789", "", "");
 
-        // assert
         assertNull(resultat);
     }
 
+    // Terskeltest på 4 millioner transaksjoner på en konto
     @Test
-    public void hentKonti_LoggetInn()  {
+    public void hentTransaksjoner_terskel() {
+        ArrayList<Transaksjon> transaksjoner = transaksjonsGenerator(4_000_000);
+        Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
+
+        Konto resultat = bankController.hentTransaksjoner("123456789", "", "");
+
+        assertNotNull(resultat);
+        assertEquals(konto, resultat);
+    }
+
+    @Test
+    public void hentKonti_loggetInn()  {
         // arrange
         List<Konto> konti = new ArrayList<>();
         Konto konto1 = new Konto("105010123456", "01010110523",
@@ -92,11 +98,12 @@ public class EnhetstestBankController {
         List<Konto> resultat = bankController.hentKonti();
 
         // assert
+        assertNotNull(resultat);
         assertEquals(konti, resultat);
     }
 
     @Test
-    public void hentKonti_IkkeLoggetInn()  {
+    public void hentKonti_ikkeLoggetInn()  {
         // arrange
 
         when(sjekk.loggetInn()).thenReturn(null);
@@ -121,33 +128,108 @@ public class EnhetstestBankController {
         List<Konto> resultat = bankController.hentKonti();
 
         // assert
+        assertNotNull(resultat);
         assertEquals(konti, resultat);
     }
 
+    @Test
+    public void hentSaldi_loggetInn() {
 
+        ArrayList<Konto> kontoer = new ArrayList<>();
+        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(1)));
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.hentSaldi(anyString())).thenReturn(kontoer);
+
+        List<Konto> resultat = bankController.hentSaldi();
+
+        assertNotNull(resultat);
+        assertEquals(kontoer, resultat);
+    }
+
+    @Test
+    public void hentSaldi_ikkeLoggetInn()   {
+
+        ArrayList<Konto> kontoer = new ArrayList<>();
+        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(1)));
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        when(repository.hentSaldi(anyString())).thenReturn(kontoer);
+
+        List<Konto> resultat = bankController.hentSaldi();
+
+        assertNull(resultat);
+    }
+
+    @Test
+    public void hentSaldi_terskel()     {
+
+        ArrayList<Konto> kontoer = kontoGenerator(100);
+
+    }
+
+
+    @Test
+    public void hentKundeInfo_loggetInn() {
+
+        // arrange
+        Kunde enKunde = new Kunde("01010110523",
+                "Lene", "Jensen", "Askerveien 22", "3270",
+                "Asker", "22224444", "HeiHei");
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.hentKundeInfo(anyString())).thenReturn(enKunde);
+
+        // act
+        Kunde resultat = bankController.hentKundeInfo();
+
+        // assert
+        assertNotNull(resultat);
+        assertEquals(enKunde, resultat);
+    }
+
+    @Test
+    public void hentKundeInfo_ikkeLoggetInn() {
+
+        // arrange
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        //act
+        Kunde resultat = bankController.hentKundeInfo();
+
+        // assert
+        assertNull(resultat);
+    }
 
     // HJELPE-METODER TIL Å FULLFØRE TESTER
     private static ArrayList<Konto> kontoGenerator(long antall)   {
         ArrayList<Konto> kontoer = new ArrayList<>();
 
         for (int i = 0; i < antall; i++)   {
-            kontoer.add(new Konto(tilfeldigString(11), tilfeldigString(11), tilfeldigInt(5), "Lønnskonto", "NOK", null));
+            //kontoer.add(new Konto(tilfeldigString(11), tilfeldigString(11), tilfeldigDouble(5), "Lønnskonto", "NOK", null));
+            kontoer.add(new Konto());
         }
 
         return kontoer;
     }
 
     // HJELPE-METODER TIL Å FULLFØRE TESTER
-    private static ArrayList<Transaksjon> transaksjonsGenerator(long antall)   {
+    private static ArrayList<Transaksjon> transaksjonsGenerator(int antall)   {
         ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
 
+        // dato er "" fordi repository-metoden endrer det for oss
         for (int i = 0; i < antall; i++)   {
-            transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), tilfeldigDouble(5), tilfeldigString(8), tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
+            //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
+            transaksjoner.add(new Transaksjon());
         }
 
         return transaksjoner;
     }
 
+    // JEG PRØVDE Å BRUKE DE UNDER, MEN FUNGERER IKKE, SKAL FIKSE SENERE SÅ BLIR DET 100% ORDENTLIG TEST :D
 
     private static String tilfeldigString(int n) {
         long limit = (long) Math.pow(10, n);
