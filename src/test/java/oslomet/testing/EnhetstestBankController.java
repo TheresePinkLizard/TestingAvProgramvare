@@ -13,9 +13,11 @@ import oslomet.testing.Models.Kunde;
 import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
+import javax.swing.*;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -43,7 +45,7 @@ public class EnhetstestBankController {
 
         when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
 
-        Konto resultat = bankController.hentTransaksjoner("123456789", "", "");
+        Konto resultat = bankController.hentTransaksjoner("1234567890", "", "");
 
         assertNotNull(resultat);
         assertEquals(konto, resultat);
@@ -58,7 +60,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        Konto resultat = bankController.hentTransaksjoner("123456789", "", "");
+        Konto resultat = bankController.hentTransaksjoner("1234567890", "", "");
 
         assertNull(resultat);
     }
@@ -166,8 +168,17 @@ public class EnhetstestBankController {
     @Test
     public void hentSaldi_terskel()     {
 
-        ArrayList<Konto> kontoer = kontoGenerator(100);
+        // Generer 100 000 kontoer med samme personnummer;
+        ArrayList<Konto> kontoer = kontoGenerator(2, "1234567890");
 
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.hentSaldi(anyString())).thenReturn(kontoer);
+
+        List<Konto> resultat = bankController.hentSaldi();
+
+        assertNotNull(resultat);
+        assertEquals(kontoer, resultat);
     }
 
 
@@ -204,6 +215,45 @@ public class EnhetstestBankController {
         assertNull(resultat);
     }
 
+    @Test
+    public void registrerBetaling_loggetInn()     {
+        Transaksjon transaksjon = new Transaksjon();
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
+
+        String resultat = bankController.registrerBetaling(transaksjon);
+
+        assertNotNull(resultat);
+        assertEquals("OK", resultat);
+    }
+
+    @Test
+    public void registrerBetaling_ikkeLoggetInn()   {
+        Transaksjon transaksjon = new Transaksjon();
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
+
+        String resultat = bankController.registrerBetaling(transaksjon);
+
+        assertNull(resultat);
+    }
+
+    /* Notat (slett senere):
+    hentTransaksjoner henter den første kontoen med et spesielt kontonr i databasen
+    i mens hentBetalinger henter liste med transaksjoner basert på personnummer.
+*/
+
+  @Test
+    public void hentBetalinger_loggetInn()    {
+
+  }
+
+
+
     // HJELPE-METODER TIL Å FULLFØRE TESTER
     private static ArrayList<Konto> kontoGenerator(long antall)   {
         ArrayList<Konto> kontoer = new ArrayList<>();
@@ -211,6 +261,17 @@ public class EnhetstestBankController {
         for (int i = 0; i < antall; i++)   {
             //kontoer.add(new Konto(tilfeldigString(11), tilfeldigString(11), tilfeldigDouble(5), "Lønnskonto", "NOK", null));
             kontoer.add(new Konto());
+        }
+
+        return kontoer;
+    }
+
+    //Lager n antall kontoer til samme person
+    private static ArrayList<Konto> kontoGenerator(long antall, String personnummer)    {
+        ArrayList<Konto> kontoer = new ArrayList<>();
+
+        for (int i = 0; i < antall; i++)   {
+            kontoer.add(new Konto(personnummer, "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(10)));
         }
 
         return kontoer;
@@ -224,6 +285,19 @@ public class EnhetstestBankController {
         for (int i = 0; i < antall; i++)   {
             //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
             transaksjoner.add(new Transaksjon());
+        }
+
+        return transaksjoner;
+    }
+
+    // HJELPE-METODER TIL Å FULLFØRE TESTER
+    private static ArrayList<Transaksjon> transaksjonsGenerator(int antall, String kontonr)   {
+        ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
+
+        // dato er "" fordi repository-metoden endrer det for oss
+        for (int i = 0; i < antall; i++)   {
+            //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
+            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "Hei2", kontonr));
         }
 
         return transaksjoner;
