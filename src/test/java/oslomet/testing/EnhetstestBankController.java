@@ -1,7 +1,6 @@
 package oslomet.testing;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.*;
@@ -13,7 +12,6 @@ import oslomet.testing.Models.Kunde;
 import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
-import javax.swing.*;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,7 +35,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentTransaksjoner_loggetInn()   {
-        ArrayList<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        ArrayList<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
@@ -52,7 +50,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentTransaksjoner_ikkeLoggetInn()   {
-        ArrayList<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        ArrayList<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
@@ -67,7 +65,7 @@ public class EnhetstestBankController {
     // Terskeltest på 4 millioner transaksjoner på en konto
     @Test
     public void hentTransaksjoner_terskel() {
-        ArrayList<Transaksjon> transaksjoner = transaksjonsGenerator(4_000_000);
+        ArrayList<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_000);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
@@ -119,7 +117,7 @@ public class EnhetstestBankController {
     // Terskeltest på 2 millioner kontoer
     @Test
     public void hentKonti_terskel() {
-        ArrayList<Konto> konti = kontoGenerator(2_000_000);
+        ArrayList<Konto> konti = Hjelp.kontoGenerator(2_000_000);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -137,7 +135,7 @@ public class EnhetstestBankController {
     public void hentSaldi_loggetInn() {
 
         ArrayList<Konto> kontoer = new ArrayList<>();
-        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(1)));
+        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -153,7 +151,7 @@ public class EnhetstestBankController {
     public void hentSaldi_ikkeLoggetInn()   {
 
         ArrayList<Konto> kontoer = new ArrayList<>();
-        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(1)));
+        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
 
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -168,7 +166,7 @@ public class EnhetstestBankController {
     public void hentSaldi_terskel()     {
 
         // Generer 100 000 kontoer med samme personnummer;
-        ArrayList<Konto> kontoer = kontoGenerator(2, "1234567890");
+        ArrayList<Konto> kontoer = Hjelp.kontoGenerator(2, "1234567890");
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -216,7 +214,7 @@ public class EnhetstestBankController {
     @Test
     public void hentBetalinger_loggetInn()    {
 
-      List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+      List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
 
       when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -231,7 +229,7 @@ public class EnhetstestBankController {
     @Test
     public void hentBetalinger_ikkeLoggetInn()    {
 
-      List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+      List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
 
       when(sjekk.loggetInn()).thenReturn(null);
 
@@ -244,9 +242,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentBetalinger_terksel()      {
-      List<Transaksjon> transaksjoner = transaksjonsGenerator(4_000_000);
-
-      System.out.print(transaksjoner.toString());
+      List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_000);
 
       when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -261,7 +257,7 @@ public class EnhetstestBankController {
     @Test
     public void utforBetaling_loggetInn()   {
 
-        List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         transaksjoner.get(0).setAvventer("0");
 
         when(sjekk.loggetInn()).thenReturn("1234567890");
@@ -277,7 +273,7 @@ public class EnhetstestBankController {
     @Test
     public void utforBetaling_ikkeLoggetInn()   {
 
-        List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         transaksjoner.get(0).setAvventer("0");
 
         when(sjekk.loggetInn()).thenReturn(null);
@@ -291,7 +287,7 @@ public class EnhetstestBankController {
 
     @Test
     public void utforBetaling_terskel()     {
-        List<Transaksjon> transaksjoner = transaksjonsGenerator(4_000_00);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_00);
         transaksjoner.get(0).setAvventer("0");
 
         when(sjekk.loggetInn()).thenReturn("1234567890");
@@ -369,77 +365,6 @@ public class EnhetstestBankController {
         String resultat = bankController.endre(kunde);
 
         assertNull(resultat);
-    }
-
-
-
-    // HJELPE-METODER TIL Å FULLFØRE TESTER
-    private static ArrayList<Konto> kontoGenerator(long antall)   {
-        ArrayList<Konto> kontoer = new ArrayList<>();
-
-        for (int i = 0; i < antall; i++)   {
-            //kontoer.add(new Konto(tilfeldigString(11), tilfeldigString(11), tilfeldigDouble(5), "Lønnskonto", "NOK", null));
-            kontoer.add(new Konto());
-        }
-
-        return kontoer;
-    }
-
-    //Lager n antall kontoer til samme person
-    private static ArrayList<Konto> kontoGenerator(long antall, String personnummer)    {
-        ArrayList<Konto> kontoer = new ArrayList<>();
-
-        for (int i = 0; i < antall; i++)   {
-            kontoer.add(new Konto(personnummer, "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(10)));
-        }
-
-        return kontoer;
-    }
-
-    // HJELPE-METODER TIL Å FULLFØRE TESTER
-    private static ArrayList<Transaksjon> transaksjonsGenerator(int antall)   {
-        ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
-
-        // dato er "" fordi repository-metoden endrer det for oss
-        for (int i = 0; i < antall; i++)   {
-            //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
-            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "1", "1234567890"));
-        }
-
-        return transaksjoner;
-    }
-
-    // HJELPE-METODER TIL Å FULLFØRE TESTER
-    private static ArrayList<Transaksjon> transaksjonsGenerator(int antall, String kontonr)   {
-        ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
-
-        // dato er "" fordi repository-metoden endrer det for oss
-        for (int i = 0; i < antall; i++)   {
-            //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
-            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "1", kontonr));
-        }
-
-        return transaksjoner;
-    }
-
-    // JEG PRØVDE Å BRUKE DE UNDER, MEN FUNGERER IKKE, SKAL FIKSE SENERE SÅ BLIR DET 100% ORDENTLIG TEST :D
-
-    private static String tilfeldigString(int n) {
-        long limit = (long) Math.pow(10, n);
-        long randomNumber = limit + new Random().nextInt((int)limit);
-        return String.valueOf(randomNumber).substring(1);
-    }
-
-    private static int tilfeldigInt(int n) {
-        long limit = (long) Math.pow(10, n);
-        long randomNumber = limit + new Random().nextInt((int)limit);
-        return (int) randomNumber;
-    }
-
-    private static double tilfeldigDouble(int n) {
-        long limit = (long) Math.pow(10, n);
-        long randomNumber = limit + new Random().nextInt((int)limit);
-        return (double) randomNumber;
     }
 
 }
