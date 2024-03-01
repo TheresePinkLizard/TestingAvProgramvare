@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
@@ -17,8 +17,7 @@ import javax.swing.*;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -183,6 +182,129 @@ public class EnhetstestBankController {
 
 
     @Test
+    public void registrerBetaling_loggetInn()     {
+        Transaksjon transaksjon = new Transaksjon();
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
+
+        String resultat = bankController.registrerBetaling(transaksjon);
+
+        assertNotNull(resultat);
+        assertEquals("OK", resultat);
+    }
+
+    @Test
+    public void registrerBetaling_ikkeLoggetInn()   {
+        Transaksjon transaksjon = new Transaksjon();
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
+
+        String resultat = bankController.registrerBetaling(transaksjon);
+
+        assertNull(resultat);
+    }
+
+    /* Notat (slett senere):
+    hentTransaksjoner henter den første kontoen med et spesielt kontonr i databasen
+    i mens hentBetalinger henter liste med transaksjoner basert på personnummer og om den avventer.
+*/
+
+    @Test
+    public void hentBetalinger_loggetInn()    {
+
+      List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+
+      when(sjekk.loggetInn()).thenReturn("01010110523");
+
+      when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+      List<Transaksjon> resultat = bankController.hentBetalinger();
+
+      assertNotNull(resultat);
+      assertEquals(transaksjoner, resultat);
+    }
+
+    @Test
+    public void hentBetalinger_ikkeLoggetInn()    {
+
+      List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+
+      when(sjekk.loggetInn()).thenReturn(null);
+
+      when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+      List<Transaksjon> resultat = bankController.hentBetalinger();
+
+      assertNull(resultat);
+    }
+
+    @Test
+    public void hentBetalinger_terksel()      {
+      List<Transaksjon> transaksjoner = transaksjonsGenerator(4_000_000);
+
+      System.out.print(transaksjoner.toString());
+
+      when(sjekk.loggetInn()).thenReturn("01010110523");
+
+      when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+      List<Transaksjon> resultat = bankController.hentBetalinger();
+
+      assertNotNull(resultat);
+      assertEquals(transaksjoner, resultat);
+    }
+
+    @Test
+    public void utforBetaling_loggetInn()   {
+
+        List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        transaksjoner.get(0).setAvventer("0");
+
+        when(sjekk.loggetInn()).thenReturn("1234567890");
+        when(repository.utforBetaling(10)).thenReturn("OK");
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+        List<Transaksjon> resultat = bankController.utforBetaling(10);
+
+        assertNotNull(resultat);
+        assertEquals(transaksjoner, resultat);
+    }
+
+    @Test
+    public void utforBetaling_ikkeLoggetInn()   {
+
+        List<Transaksjon> transaksjoner = transaksjonsGenerator(10);
+        transaksjoner.get(0).setAvventer("0");
+
+        when(sjekk.loggetInn()).thenReturn(null);
+        when(repository.utforBetaling(10)).thenReturn("OK");
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+        List<Transaksjon> resultat = bankController.utforBetaling(10);
+
+        assertNull(resultat);
+    }
+
+    @Test
+    public void utforBetaling_terskel()     {
+        List<Transaksjon> transaksjoner = transaksjonsGenerator(4_000_00);
+        transaksjoner.get(0).setAvventer("0");
+
+        when(sjekk.loggetInn()).thenReturn("1234567890");
+        when(repository.utforBetaling(10)).thenReturn("OK");
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+        List<Transaksjon> resultat = bankController.utforBetaling(10);
+
+        assertNotNull(resultat);
+        assertEquals(transaksjoner, resultat);
+    }
+
+    @Test
     public void hentKundeInfo_loggetInn() {
 
         // arrange
@@ -216,41 +338,38 @@ public class EnhetstestBankController {
     }
 
     @Test
-    public void registrerBetaling_loggetInn()     {
-        Transaksjon transaksjon = new Transaksjon();
+    public void endre_loggetInn()   {
+        // Forventet kunde:
+        Kunde kunde = new Kunde("0987654321",
+                "Lene", "Jensen", "Askerveien 22", null,
+                "Asker", "22224444", "HeiHei");
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
+        // Personnummer vil da bli endret til dette:
+        when(sjekk.loggetInn()).thenReturn("1234567890");
 
-        when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
+        when(repository.endreKundeInfo(any())).thenReturn("OK");
 
-        String resultat = bankController.registrerBetaling(transaksjon);
+        String resultat = bankController.endre(kunde);
 
         assertNotNull(resultat);
         assertEquals("OK", resultat);
     }
 
     @Test
-    public void registrerBetaling_ikkeLoggetInn()   {
-        Transaksjon transaksjon = new Transaksjon();
+    public void endre_ikkeLoggetInn()   {
+        // Forventet kunde:
+        Kunde kunde = new Kunde("0987654321",
+                "Lene", "Jensen", "Askerveien 22", null,
+                "Asker", "22224444", "HeiHei");
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
+        when(repository.endreKundeInfo(any())).thenReturn("OK");
 
-        String resultat = bankController.registrerBetaling(transaksjon);
+        String resultat = bankController.endre(kunde);
 
         assertNull(resultat);
     }
-
-    /* Notat (slett senere):
-    hentTransaksjoner henter den første kontoen med et spesielt kontonr i databasen
-    i mens hentBetalinger henter liste med transaksjoner basert på personnummer.
-*/
-
-  @Test
-    public void hentBetalinger_loggetInn()    {
-
-  }
 
 
 
@@ -284,7 +403,7 @@ public class EnhetstestBankController {
         // dato er "" fordi repository-metoden endrer det for oss
         for (int i = 0; i < antall; i++)   {
             //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
-            transaksjoner.add(new Transaksjon());
+            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "1", "1234567890"));
         }
 
         return transaksjoner;
@@ -297,7 +416,7 @@ public class EnhetstestBankController {
         // dato er "" fordi repository-metoden endrer det for oss
         for (int i = 0; i < antall; i++)   {
             //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
-            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "Hei2", kontonr));
+            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "1", kontonr));
         }
 
         return transaksjoner;
