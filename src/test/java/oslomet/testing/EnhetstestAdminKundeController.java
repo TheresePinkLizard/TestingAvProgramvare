@@ -32,7 +32,7 @@ public class EnhetstestAdminKundeController {
     private Sikkerhet sjekk;
 
     @Test
-    public void testLagreKunde() {
+    public void lagreKunde_loggetInn() {
         when(sjekk.loggetInn()).thenReturn("Innlogget");
         List<Kunde> forventedeKunder = new ArrayList<>();
         when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
@@ -41,7 +41,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testLagreKunde_ikkeLoggetInn()    {
+    public void lagreKunde_ikkeLoggetInn()    {
         when(sjekk.loggetInn()).thenReturn(null);
         List<Kunde> forventedeKunder = new ArrayList<>();
         when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
@@ -50,7 +50,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testHentAlle(){
+    public void hentAlle_loggetInn(){
         when(sjekk.loggetInn()).thenReturn("Innlogget");
         List<Kunde> forventedeKunder = new ArrayList<>();
         when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
@@ -59,7 +59,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testHentAlle_ikkeLoggetInn(){
+    public void hentAlle_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
         List<Kunde> forventedeKunder = new ArrayList<>();
         when (repository.hentAlleKunder()).thenReturn(forventedeKunder);
@@ -68,7 +68,18 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testEndre() {
+    public void hentAlle_terskel()  {
+        List<Kunde> forventedeKunder = Hjelp.kundeGenerator(2_000_000);
+
+        when(sjekk.loggetInn()).thenReturn("Innlogget");
+
+        when(repository.hentAlleKunder()).thenReturn(forventedeKunder);
+        List<Kunde> ekteKunder = adminKundeController.hentAlle();
+        assertEquals(forventedeKunder, ekteKunder);
+    }
+
+    @Test
+    public void endre_loggetInn() {
         when(sjekk.loggetInn()).thenReturn("Innlogget");
         Kunde kunde1 = new Kunde();
         when(repository.endreKundeInfo(kunde1)).thenReturn("OK");
@@ -77,7 +88,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testEndre_ikkeLoggetInn() {
+    public void endre_ikkeLoggetInn() {
         when(sjekk.loggetInn()).thenReturn(null);
         Kunde kunde1 = new Kunde();
         when(repository.endreKundeInfo(kunde1)).thenReturn("OK");
@@ -86,7 +97,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testSlett() {
+    public void slett_loggetInn() {
         when(sjekk.loggetInn()).thenReturn("Innlogget");
         String personnummer = "123456789";
         when(repository.slettKunde(personnummer)).thenReturn("OK");
@@ -95,7 +106,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void testSlett_ikkeLoggetInn() {
+    public void slett_ikkeLoggetInn() {
         when(sjekk.loggetInn()).thenReturn(null);
         String personnummer = "123456789";
         when(repository.slettKunde(personnummer)).thenReturn("OK");

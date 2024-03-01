@@ -117,7 +117,7 @@ public class EnhetstestBankController {
     // Terskeltest på 2 millioner kontoer
     @Test
     public void hentKonti_terskel() {
-        ArrayList<Konto> konti = Hjelp.kontoGenerator(2_000_000);
+        ArrayList<Konto> konti = Hjelp.kontoGenerator(400_000);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 

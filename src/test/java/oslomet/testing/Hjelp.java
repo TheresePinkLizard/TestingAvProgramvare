@@ -1,10 +1,12 @@
 package oslomet.testing;
 
 import oslomet.testing.Models.Konto;
+import oslomet.testing.Models.Kunde;
 import oslomet.testing.Models.Transaksjon;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 
 public class Hjelp {
 
@@ -13,8 +15,7 @@ public class Hjelp {
         ArrayList<Konto> kontoer = new ArrayList<>();
 
         for (int i = 0; i < antall; i++)   {
-            //kontoer.add(new Konto(tilfeldigString(11), tilfeldigString(11), tilfeldigDouble(5), "Lønnskonto", "NOK", null));
-            kontoer.add(new Konto());
+            kontoer.add(new Konto(tilfeldigString(11), tilfeldigString(11), tilfeldigDouble(5), "Lønnskonto", "NOK", transaksjonsGenerator(10)));
         }
 
         return kontoer;
@@ -25,10 +26,23 @@ public class Hjelp {
         ArrayList<Konto> kontoer = new ArrayList<>();
 
         for (int i = 0; i < antall; i++)   {
-            kontoer.add(new Konto(personnummer, "1234567890", 1000, "Lønnskonto", "NOK", transaksjonsGenerator(10)));
+            kontoer.add(new Konto(personnummer, tilfeldigString(11), tilfeldigDouble(5), "Lønnskonto", "NOK", transaksjonsGenerator(10)));
         }
 
         return kontoer;
+    }
+
+    public static ArrayList<Kunde> kundeGenerator(long antall)   {
+        ArrayList<Kunde> kunder = new ArrayList<>();
+
+        for (int i = 0; i < antall; i++)   {
+            kunder.add(new Kunde(tilfeldigString(2), tilfeldigString(7), tilfeldigString(7), tilfeldigString(12), tilfeldigString(4), tilfeldigString(6), tilfeldigString(8), tilfeldigString(20)));
+            if (i < 20) {
+                System.out.println(kunder.get(i).getFornavn());
+            }
+        }
+
+        return kunder;
     }
 
     // HJELPE-METODER TIL Å FULLFØRE TESTER
@@ -37,43 +51,55 @@ public class Hjelp {
 
         // dato er "" fordi repository-metoden endrer det for oss
         for (int i = 0; i < antall; i++)   {
-            //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
-            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "1", "1234567890"));
+            transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
         }
 
         return transaksjoner;
     }
 
-    // HJELPE-METODER TIL Å FULLFØRE TESTER
     public static ArrayList<Transaksjon> transaksjonsGenerator(int antall, String kontonr)   {
         ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
 
         // dato er "" fordi repository-metoden endrer det for oss
         for (int i = 0; i < antall; i++)   {
-            //transaksjoner.add(new Transaksjon(tilfeldigInt(5), tilfeldigString(11), 100, "", tilfeldigString(50), tilfeldigString(5), tilfeldigString(11)));
-            transaksjoner.add(new Transaksjon(10, "0987654321", 100, "29-01-2002", "Hei", "1", kontonr));
+            transaksjoner.add(new Transaksjon(10, tilfeldigString(11), tilfeldigDouble(3), "", tilfeldigString(10), "1", kontonr));
         }
 
         return transaksjoner;
     }
 
-    // JEG PRØVDE Å BRUKE DE UNDER, MEN FUNGERER IKKE, SKAL FIKSE SENERE SÅ BLIR DET 100% ORDENTLIG TEST :D
+    private static String tilfeldigString(int n) {
+        String tegn = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789"
+        + "abcdefghijklmnopqrstuvxyz";
 
-    public static String tilfeldigString(int n) {
-        long limit = (long) Math.pow(10, n);
-        long randomNumber = limit + new Random().nextInt((int)limit);
-        return String.valueOf(randomNumber).substring(1);
+        StringBuilder s = new StringBuilder(n);
+        for (int y = 0; y < n; y++) {
+            int index = (int)(tegn.length() * Math.random());
+            s.append(tegn.charAt(index));
+        }
+        return s.toString();
     }
 
-    public static int tilfeldigInt(int n) {
-        long limit = (long) Math.pow(10, n);
-        long randomNumber = limit + new Random().nextInt((int)limit);
-        return (int) randomNumber;
+    private static int tilfeldigInt(int n) {
+        String tegn = "0123456789";
+
+        StringBuilder s = new StringBuilder(n);
+        for (int y = 0; y < n; y++) {
+            int index = (int)(tegn.length() * Math.random());
+            s.append(tegn.charAt(index));
+        }
+        return Integer.parseInt(s.toString());
     }
 
-    public static double tilfeldigDouble(int n) {
-        long limit = (long) Math.pow(10, n);
-        long randomNumber = limit + new Random().nextInt((int)limit);
-        return (double) randomNumber;
+
+    private static double tilfeldigDouble(int n) {
+        String tegn = "0123456789";
+
+        StringBuilder s = new StringBuilder(n);
+        for (int y = 0; y < n; y++) {
+            int index = (int)(tegn.length() * Math.random());
+            s.append(tegn.charAt(index));
+        }
+        return Double.parseDouble(s.toString());
     }
 }
