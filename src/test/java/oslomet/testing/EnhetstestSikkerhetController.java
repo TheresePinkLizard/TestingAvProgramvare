@@ -126,18 +126,15 @@ public class EnhetstestSikkerhetController {
         String resultat = sikkerhetsController.loggetInn();
 
         assertEquals("Admin", resultat);
-        verify(session).setAttribute("Innlogget", "12345678901");
+        verify(session).setAttribute("Innlogget", "Admin");
     }
-
 
     @Test
     public void testLoggUt(){
-        session.setAttribute("Innlogget", null);
+        sikkerhetsController.loggUt();
 
-        String resultat = sikkerhetsController.loggetInn();
-
-        assertEquals(null, resultat);
-        verify(session).setAttribute("Innlogget", "12345678901");
+        // Sjekker om session er blitt endret:
+        verify(session).setAttribute("Innlogget", null);
     }
 
 }

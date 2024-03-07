@@ -53,7 +53,7 @@ public class EnhetstestAdminKontoController {
     // INTERESSANT: Systemet vil kun avslå din tilgang om repository-metoden returnerer null!
     // Så man kan legit få repositorien til å returnere hva man vil og man kommer seg inn...
     @Test
-    public void hentAlleKonto_ikkeLoggetInn() {
+    public void hentAlleKonti_ikkeLoggetInn() {
         // lage en list med kontoer
         List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
 
@@ -67,7 +67,7 @@ public class EnhetstestAdminKontoController {
         List<Konto> resultat = kontoController.hentAlleKonti();
 
         // sammenligner resultat og ser om vi får tilbake det vi har sendt
-        assertEquals(kontoer, resultat);
+        assertNull(resultat);
     }
 
 

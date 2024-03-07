@@ -133,16 +133,19 @@ public class EnhetstestBankController {
 
     @Test
     public void hentSaldi_loggetInn() {
-
+        // ARRANGE:
         List<Konto> kontoer = new ArrayList<>();
-        kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
+        kontoer.add(new Konto("1234567890", "1234567890",
+                1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
         when(repository.hentSaldi(anyString())).thenReturn(kontoer);
 
+        // ACT:
         List<Konto> resultat = bankController.hentSaldi();
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(kontoer, resultat);
     }
