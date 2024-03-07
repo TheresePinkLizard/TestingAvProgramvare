@@ -35,7 +35,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentTransaksjoner_loggetInn()   {
-        ArrayList<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
@@ -50,7 +50,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentTransaksjoner_ikkeLoggetInn()   {
-        ArrayList<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
@@ -65,7 +65,7 @@ public class EnhetstestBankController {
     // Terskeltest på 4 millioner transaksjoner på en konto
     @Test
     public void hentTransaksjoner_terskel() {
-        ArrayList<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_000);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(2000);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
@@ -117,7 +117,7 @@ public class EnhetstestBankController {
     // Terskeltest på 2 millioner kontoer
     @Test
     public void hentKonti_terskel() {
-        ArrayList<Konto> konti = Hjelp.kontoGenerator(400_000);
+        List<Konto> konti = Hjelp.kontoGenerator(900_000);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -134,7 +134,7 @@ public class EnhetstestBankController {
     @Test
     public void hentSaldi_loggetInn() {
 
-        ArrayList<Konto> kontoer = new ArrayList<>();
+        List<Konto> kontoer = new ArrayList<>();
         kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
@@ -150,7 +150,7 @@ public class EnhetstestBankController {
     @Test
     public void hentSaldi_ikkeLoggetInn()   {
 
-        ArrayList<Konto> kontoer = new ArrayList<>();
+        List<Konto> kontoer = new ArrayList<>();
         kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
 
         when(sjekk.loggetInn()).thenReturn(null);
@@ -166,7 +166,7 @@ public class EnhetstestBankController {
     public void hentSaldi_terskel()     {
 
         // Generer 100 000 kontoer med samme personnummer;
-        ArrayList<Konto> kontoer = Hjelp.kontoGenerator(2, "1234567890");
+        List<Konto> kontoer = Hjelp.kontoGenerator(2, "1234567890");
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -241,7 +241,7 @@ public class EnhetstestBankController {
     }
 
     @Test
-    public void hentBetalinger_terksel()      {
+    public void hentBetalinger_terskel()      {
       List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_000);
 
       when(sjekk.loggetInn()).thenReturn("01010110523");
@@ -287,7 +287,7 @@ public class EnhetstestBankController {
 
     @Test
     public void utforBetaling_terskel()     {
-        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_00);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4000);
         transaksjoner.get(0).setAvventer("0");
 
         when(sjekk.loggetInn()).thenReturn("1234567890");

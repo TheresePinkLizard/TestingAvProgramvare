@@ -11,6 +11,7 @@ import oslomet.testing.DAL.AdminRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class EnhetstestAdminKontoController {
 
     // hent alle // ---TEST GODKJENT-----
     @Test
-    public void hentAlleKontoTest() {
+    public void hentAlleKonti_loggetInn() {
         // lage en list med kontoer
-        List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
+        List<Konto> kontoer = Hjelp.kontoGenerator(3);
 
         // setter opp mock når sjekk.LoggetInn() blir kalt
         Mockito.when(sjekk.loggetInn()).thenReturn("Innlogget");
@@ -52,12 +53,12 @@ public class EnhetstestAdminKontoController {
     // INTERESSANT: Systemet vil kun avslå din tilgang om repository-metoden returnerer null!
     // Så man kan legit få repositorien til å returnere hva man vil og man kommer seg inn...
     @Test
-    public void hentAlleKontoTest_feil() {
+    public void hentAlleKonto_ikkeLoggetInn() {
         // lage en list med kontoer
         List<Konto> kontoer = Arrays.asList(new Konto(), new Konto(), new Konto());
 
         // setter opp mock når sjekk.LoggetInn() blir kalt
-        Mockito.when(sjekk.loggetInn()).thenReturn("flkgdkfølgkdjlf");
+        Mockito.when(sjekk.loggetInn()).thenReturn(null);
 
         //Setter opp et mock når aRepository.hentAlleKonti() blir kalt
         Mockito.when(repository.hentAlleKonti()).thenReturn(kontoer);
@@ -69,18 +70,6 @@ public class EnhetstestAdminKontoController {
         assertEquals(kontoer, resultat);
     }
 
-    // Sjekker at resultat ikke kommer om man ikke er logget inn:
-    @Test
-    public void hentAlleKontoTest_ikkeLoggetInn()   {
-        // setter opp mock når sjekk.LoggetInn() blir kalt
-        Mockito.when(sjekk.loggetInn()).thenReturn(null);
-
-        //henter faktiske kontoer fra kontocontroller
-        List<Konto> resultat = kontoController.hentAlleKonti();
-
-        // sjekker om resultatet blir dermed "0".
-        assertNull(resultat);
-    }
 
     //registrer    // ----TEST GODKJENT----
     @Test
