@@ -35,6 +35,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentTransaksjoner_loggetInn()   {
+        // ARRANGE:
         List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
@@ -42,14 +43,17 @@ public class EnhetstestBankController {
 
         when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
 
+        // ACT:
         Konto resultat = bankController.hentTransaksjoner("1234567890", "", "");
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(konto, resultat);
     }
 
     @Test
     public void hentTransaksjoner_ikkeLoggetInn()   {
+        // ARRANGE:
         List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
@@ -57,15 +61,17 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
+        // ACT:
         Konto resultat = bankController.hentTransaksjoner("1234567890", "", "");
 
+        // ASSERT:
         assertNull(resultat);
     }
 
-    // Terskeltest på 4 millioner transaksjoner på en konto
+    // Terskeltest på 10 000 transaksjoner på en konto
     @Test
     public void hentTransaksjoner_terskel() {
-        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(2000);
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10_000);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
