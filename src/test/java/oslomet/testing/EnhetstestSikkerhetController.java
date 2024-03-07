@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -60,33 +61,83 @@ public class EnhetstestSikkerhetController {
     @Test
     public void testSjekkLoggInn() {
         when(repository.sjekkLoggInn(anyString(), anyString())).thenReturn("OK");
+
         String resultat = sikkerhetsController.sjekkLoggInn("12345678901", "HeiHei");
+
         assertEquals("OK", resultat);
+        verify(session).setAttribute("Innlogget", "12345678901");
+    }
+
+    @Test
+    public void testSjekkLoggInn_altFeil()    {
+        when(repository.sjekkLoggInn(anyString(), anyString())).thenReturn("Feil");
+
+        // Feil passord:
+        String resultat = sikkerhetsController.sjekkLoggInn("12345678901", "NeiNei");
+
+        assertEquals("Feil i personnummer eller passord", resultat);
+    }
+
+    // Feil passord i følge regex:
+    @Test
+    public void testSjekkLoggInn_feilPassord()    {
+        when(repository.sjekkLoggInn(anyString(), anyString())).thenReturn("Feil");
+
+        // Feil passord, er under 6 tegn:
+        String resultat = sikkerhetsController.sjekkLoggInn("12345678901", "Hei");
+
+        assertEquals("Feil i passord", resultat);
+    }
+
+    // Feil personnummer i følge regex:
+    @Test
+    public void testSjekkLoggInn_feilPersonnummer()    {
+        when(repository.sjekkLoggInn(anyString(), anyString())).thenReturn("Feil");
+
+        // Feil personnummer, er under 6 tegn:
+        String resultat = sikkerhetsController.sjekkLoggInn("123", "HeiHei");
+
+        assertEquals("Feil i personnummer", resultat);
     }
 
     @Test
     public void testInnlogget() {
-
         session.setAttribute("Innlogget", "12345678901");
-        String resultat = sikkerhetsController.loggetInn();
-        assertEquals("12345678901", resultat);
 
+        String resultat = sikkerhetsController.loggetInn();
+
+        assertEquals("12345678901", resultat);
+        verify(session).setAttribute("Innlogget", "12345678901");
+    }
+
+    @Test
+    public void testInnlogget_altFeil()    {
+        when(repository.sjekkLoggInn(anyString(), anyString())).thenReturn("Feil");
+
+        String resultat = sikkerhetsController.loggetInn();
+
+        assertNull(resultat);
     }
 
     @Test
     public void testLoggInnAdmin(){
-
         session.setAttribute("Innlogget", "Admin");
-        String resultat = sikkerhetsController.loggetInn();
-        assertEquals("Admin", resultat);
 
+        String resultat = sikkerhetsController.loggetInn();
+
+        assertEquals("Admin", resultat);
+        verify(session).setAttribute("Innlogget", "12345678901");
     }
+
 
     @Test
     public void testLoggUt(){
         session.setAttribute("Innlogget", null);
+
         String resultat = sikkerhetsController.loggetInn();
+
         assertEquals(null, resultat);
+        verify(session).setAttribute("Innlogget", "12345678901");
     }
 
 }
