@@ -94,6 +94,7 @@ public class EnhetstestAdminKundeController {
         assertNull(resultat);
     }
 
+    // Terskeltest med 2 000 000 kunder:
     @Test
     public void hentAlle_terskel()  {
         // ARRANGE:

@@ -71,6 +71,7 @@ public class EnhetstestBankController {
     // Terskeltest på 10 000 transaksjoner på en konto
     @Test
     public void hentTransaksjoner_terskel() {
+        // ARRANGE:
         List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10_000);
         Konto konto = new Konto("1234567890", "1234567890", 1234, "Lønnskonto", "NOK", transaksjoner);
 
@@ -78,61 +79,57 @@ public class EnhetstestBankController {
 
         when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
 
+        // ACT:
         Konto resultat = bankController.hentTransaksjoner("123456789", "", "");
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(konto, resultat);
     }
 
     @Test
     public void hentKonti_loggetInn()  {
-        // arrange
-        List<Konto> konti = new ArrayList<>();
-        Konto konto1 = new Konto("105010123456", "01010110523",
-                720, "Lønnskonto", "NOK", null);
-        Konto konto2 = new Konto("105010123456", "12345678901",
-                1000, "Lønnskonto", "NOK", null);
-        konti.add(konto1);
-        konti.add(konto2);
+        // ARRANGE:
+        List<Konto> konti = Hjelp.kontoGenerator(10);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
         when(repository.hentKonti(anyString())).thenReturn(konti);
 
-        // act
+        // ACT:
         List<Konto> resultat = bankController.hentKonti();
 
-        // assert
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(konti, resultat);
     }
 
     @Test
     public void hentKonti_ikkeLoggetInn()  {
-        // arrange
-
+        // ARRANGE:
         when(sjekk.loggetInn()).thenReturn(null);
 
-        // act
+        // ACT:
         List<Konto> resultat = bankController.hentKonti();
 
-        // assert
+        // ASSERT:
         assertNull(resultat);
     }
 
-    // Terskeltest på 2 millioner kontoer
+    // Terskeltest på 900 000 kontoer
     @Test
     public void hentKonti_terskel() {
+        // ARRANGE:
         List<Konto> konti = Hjelp.kontoGenerator(900_000);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
         when(repository.hentKonti(anyString())).thenReturn(konti);
 
-        // act
+        // ACT:
         List<Konto> resultat = bankController.hentKonti();
 
-        // assert
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(konti, resultat);
     }
@@ -158,7 +155,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentSaldi_ikkeLoggetInn()   {
-
+        // ARRANGE:
         List<Konto> kontoer = new ArrayList<>();
         kontoer.add(new Konto("1234567890", "1234567890", 1000, "Lønnskonto", "NOK", Hjelp.transaksjonsGenerator(1)));
 
@@ -166,23 +163,27 @@ public class EnhetstestBankController {
 
         when(repository.hentSaldi(anyString())).thenReturn(kontoer);
 
+        // ACT:
         List<Konto> resultat = bankController.hentSaldi();
 
+        // ASSERT:
         assertNull(resultat);
     }
 
+    // Terskeltest med 100 000 kontoer med samme personnummer;
     @Test
     public void hentSaldi_terskel()     {
-
-        // Generer 100 000 kontoer med samme personnummer;
-        List<Konto> kontoer = Hjelp.kontoGenerator(2, "1234567890");
+        // ARRANGE:
+        List<Konto> kontoer = Hjelp.kontoGenerator(100_000, "1234567890");
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
         when(repository.hentSaldi(anyString())).thenReturn(kontoer);
 
+        // ACT:
         List<Konto> resultat = bankController.hentSaldi();
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(kontoer, resultat);
     }
@@ -190,82 +191,91 @@ public class EnhetstestBankController {
 
     @Test
     public void registrerBetaling_loggetInn()     {
+        // ARRANGE:
         Transaksjon transaksjon = new Transaksjon();
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
         when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
 
+        // ACT:
         String resultat = bankController.registrerBetaling(transaksjon);
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals("OK", resultat);
     }
 
     @Test
     public void registrerBetaling_ikkeLoggetInn()   {
+        // ARRANGE:
         Transaksjon transaksjon = new Transaksjon();
 
         when(sjekk.loggetInn()).thenReturn(null);
 
         when(repository.registrerBetaling(any(Transaksjon.class))).thenReturn("OK");
 
+        // ACT:
         String resultat = bankController.registrerBetaling(transaksjon);
 
+        // ARRANGE:
         assertNull(resultat);
     }
 
-    /* Notat (slett senere):
-    hentTransaksjoner henter den første kontoen med et spesielt kontonr i databasen
-    i mens hentBetalinger henter liste med transaksjoner basert på personnummer og om den avventer.
-*/
-
     @Test
     public void hentBetalinger_loggetInn()    {
+        // ARRANGE:
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
 
-      List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
+        when(sjekk.loggetInn()).thenReturn("01010110523");
 
-      when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
 
-      when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+        // ACT:
+        List<Transaksjon> resultat = bankController.hentBetalinger();
 
-      List<Transaksjon> resultat = bankController.hentBetalinger();
-
-      assertNotNull(resultat);
-      assertEquals(transaksjoner, resultat);
+        // ASSERT:
+        assertNotNull(resultat);
+        assertEquals(transaksjoner, resultat);
     }
 
     @Test
     public void hentBetalinger_ikkeLoggetInn()    {
+        // ARRANGE:
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
 
-      List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
+        when(sjekk.loggetInn()).thenReturn(null);
 
-      when(sjekk.loggetInn()).thenReturn(null);
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
 
-      when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+        // ACT:
+        List<Transaksjon> resultat = bankController.hentBetalinger();
 
-      List<Transaksjon> resultat = bankController.hentBetalinger();
-
-      assertNull(resultat);
+        // ASSERT:
+        assertNull(resultat);
     }
 
+    // Terskeltest med 4 000 000 transaksjoner:
     @Test
     public void hentBetalinger_terskel()      {
-      List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_000);
+        // ARRANGE:
+        List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4_000_000);
 
-      when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(sjekk.loggetInn()).thenReturn("01010110523");
 
-      when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
 
-      List<Transaksjon> resultat = bankController.hentBetalinger();
+        // ACT:
+        List<Transaksjon> resultat = bankController.hentBetalinger();
 
-      assertNotNull(resultat);
-      assertEquals(transaksjoner, resultat);
+        // ASSERT:
+        assertNotNull(resultat);
+        assertEquals(transaksjoner, resultat);
     }
 
     @Test
     public void utforBetaling_loggetInn()   {
-
+        // ARRANGE:
         List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         transaksjoner.get(0).setAvventer("0");
 
@@ -273,15 +283,17 @@ public class EnhetstestBankController {
         when(repository.utforBetaling(10)).thenReturn("OK");
         when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
 
+        // ACT:
         List<Transaksjon> resultat = bankController.utforBetaling(10);
 
+        // ASSRT:
         assertNotNull(resultat);
         assertEquals(transaksjoner, resultat);
     }
 
     @Test
     public void utforBetaling_ikkeLoggetInn()   {
-
+        // ARRANGE:
         List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(10);
         transaksjoner.get(0).setAvventer("0");
 
@@ -289,13 +301,17 @@ public class EnhetstestBankController {
         when(repository.utforBetaling(10)).thenReturn("OK");
         when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
 
+        // ACT:
         List<Transaksjon> resultat = bankController.utforBetaling(10);
 
+        // ASSERT:
         assertNull(resultat);
     }
 
+    // Terskeltest på 4000 transaksjoner:
     @Test
     public void utforBetaling_terskel()     {
+        // ARRANGE:
         List<Transaksjon> transaksjoner = Hjelp.transaksjonsGenerator(4000);
         transaksjoner.get(0).setAvventer("0");
 
@@ -303,16 +319,17 @@ public class EnhetstestBankController {
         when(repository.utforBetaling(10)).thenReturn("OK");
         when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
 
+        // ACT:
         List<Transaksjon> resultat = bankController.utforBetaling(10);
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(transaksjoner, resultat);
     }
 
     @Test
     public void hentKundeInfo_loggetInn() {
-
-        // arrange
+        // ARRANGE:
         Kunde enKunde = new Kunde("01010110523",
                 "Lene", "Jensen", "Askerveien 22", "3270",
                 "Asker", "22224444", "HeiHei");
@@ -321,10 +338,10 @@ public class EnhetstestBankController {
 
         when(repository.hentKundeInfo(anyString())).thenReturn(enKunde);
 
-        // act
+        // ACT:
         Kunde resultat = bankController.hentKundeInfo();
 
-        // assert
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals(enKunde, resultat);
     }
@@ -332,37 +349,38 @@ public class EnhetstestBankController {
     @Test
     public void hentKundeInfo_ikkeLoggetInn() {
 
-        // arrange
+        // ARRANGE:
         when(sjekk.loggetInn()).thenReturn(null);
 
-        //act
+        // ACT:
         Kunde resultat = bankController.hentKundeInfo();
 
-        // assert
+        // ASSERT:
         assertNull(resultat);
     }
 
     @Test
     public void endre_loggetInn()   {
-        // Forventet kunde:
+        // ARRANGE:
         Kunde kunde = new Kunde("0987654321",
                 "Lene", "Jensen", "Askerveien 22", null,
                 "Asker", "22224444", "HeiHei");
 
-        // Personnummer vil da bli endret til dette:
         when(sjekk.loggetInn()).thenReturn("1234567890");
 
         when(repository.endreKundeInfo(any())).thenReturn("OK");
 
+        // ACT:
         String resultat = bankController.endre(kunde);
 
+        // ASSERT:
         assertNotNull(resultat);
         assertEquals("OK", resultat);
     }
 
     @Test
     public void endre_ikkeLoggetInn()   {
-        // Forventet kunde:
+        // ARRANGE:
         Kunde kunde = new Kunde("0987654321",
                 "Lene", "Jensen", "Askerveien 22", null,
                 "Asker", "22224444", "HeiHei");
@@ -371,8 +389,10 @@ public class EnhetstestBankController {
 
         when(repository.endreKundeInfo(any())).thenReturn("OK");
 
+        // ACT:
         String resultat = bankController.endre(kunde);
 
+        // ASSERT:
         assertNull(resultat);
     }
 
