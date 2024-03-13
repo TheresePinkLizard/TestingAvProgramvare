@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/saldo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Register betaling]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/registerBetaling.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=tilKonto]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=tilKonto]]></target>
+	<value><![CDATA[105010123456]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=dato]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=dato]]></target>
+	<value><![CDATA[2023-12-12]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=belop]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=belop]]></target>
+	<value><![CDATA[1000]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=melding]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[xpath=//body]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=melding]]></target>
+	<value><![CDATA[Hallo!]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=regBetaling]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=regBetaling]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Utfør betalinger]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/utforBetalinger.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+</TestCase>

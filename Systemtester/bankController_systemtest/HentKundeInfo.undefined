@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/initDB]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>pause</command>
+	<target><![CDATA[1000]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Logg inn]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=personNr]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=personNr]]></target>
+	<value><![CDATA[01010110523]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[HeiHei]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=loggInn]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Kunde-info]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/kundeInfo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=fornavn]]></target>
+	<value><![CDATA[Lene]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=etternavn]]></target>
+	<value><![CDATA[Jensen]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=adresse]]></target>
+	<value><![CDATA[Askerveien 22]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=postnr]]></target>
+	<value><![CDATA[3270]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=poststed]]></target>
+	<value><![CDATA[Asker]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=telefonnr]]></target>
+	<value><![CDATA[22224444]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[HeiHei]]></value>
+</selenese>
+</TestCase>

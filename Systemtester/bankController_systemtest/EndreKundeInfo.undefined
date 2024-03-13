@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/initDB]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>pause</command>
+	<target><![CDATA[1000]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Logg inn]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=personNr]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=personNr]]></target>
+	<value><![CDATA[01010110523]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[HeiHei]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=loggInn]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Kunde-info]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/kundeInfo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[xpath=//body]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=fornavn]]></target>
+	<value><![CDATA[Ryan]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=etternavn]]></target>
+	<value><![CDATA[Gosling]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=adresse]]></target>
+	<value><![CDATA[Olav M. Troviks vei 56]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=postnr]]></target>
+	<value><![CDATA[0864]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=poststed]]></target>
+	<value><![CDATA[Oslo]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=telefonnr]]></target>
+	<value><![CDATA[44442222]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[NeiNei]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=endre]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/kundeInfo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Transaksjoner]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/transaksjon.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Kunde-info]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Logg ut]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/loggUt.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/loggInn.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=personNr]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=personNr]]></target>
+	<value><![CDATA[01010110523]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>type</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[NeiNei]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[id=loggInn]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/saldo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>click</command>
+	<target><![CDATA[link=Kunde-info]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/kundeInfo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>open</command>
+	<target><![CDATA[http://localhost:8080/kundeInfo.html]]></target>
+	<value><![CDATA[]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=fornavn]]></target>
+	<value><![CDATA[Ryan]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=etternavn]]></target>
+	<value><![CDATA[Gosling]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=adresse]]></target>
+	<value><![CDATA[Olav M. Troviks vei 56]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=postnr]]></target>
+	<value><![CDATA[0864]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=poststed]]></target>
+	<value><![CDATA[Oslo]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=telefonnr]]></target>
+	<value><![CDATA[44442222]]></value>
+</selenese>
+<selenese>
+	<command>assertValue</command>
+	<target><![CDATA[id=passord]]></target>
+	<value><![CDATA[NeiNei]]></value>
+</selenese>
+</TestCase>
