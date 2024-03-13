@@ -1,0 +1,224 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [
+        {
+            "description": "Loading of \"http://localhost:8080/initDB\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/initDB"
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/"
+        },
+        {
+            "description": "pause",
+            "target": {},
+            "type": "javascript",
+            "javaScript": "api.startAsyncSyntheticEvent(); \n                setTimeout(() => {api.finish()}, 1000);"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Logg inn\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personNr"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type 01010110523",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personNr"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "01010110523",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type HeiHei",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "HeiHei",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#loggInn"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Kunde-info\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/kundeInfo.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/kundeInfo.html"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#fornavn')[0] : document.querySelector('#fornavn');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Lene\" === \"on\" || \"Lene\" === \"off\")) {\n                        if(elem.checked && \"Lene\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Lene\");\n                        } else if(!elem.checked && \"Lene\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Lene\");\n                        }\n                    } else if(!(elem.value === \"Lene\")) {\n                        api.fail(\"Element did not have value Lene\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#etternavn')[0] : document.querySelector('#etternavn');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Jensen\" === \"on\" || \"Jensen\" === \"off\")) {\n                        if(elem.checked && \"Jensen\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Jensen\");\n                        } else if(!elem.checked && \"Jensen\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Jensen\");\n                        }\n                    } else if(!(elem.value === \"Jensen\")) {\n                        api.fail(\"Element did not have value Jensen\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#adresse')[0] : document.querySelector('#adresse');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Askerveien 22\" === \"on\" || \"Askerveien 22\" === \"off\")) {\n                        if(elem.checked && \"Askerveien 22\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Askerveien 22\");\n                        } else if(!elem.checked && \"Askerveien 22\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Askerveien 22\");\n                        }\n                    } else if(!(elem.value === \"Askerveien 22\")) {\n                        api.fail(\"Element did not have value Askerveien 22\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#postnr')[0] : document.querySelector('#postnr');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"3270\" === \"on\" || \"3270\" === \"off\")) {\n                        if(elem.checked && \"3270\" === \"off\") {\n                            api.fail(\"Checkbox did not have state 3270\");\n                        } else if(!elem.checked && \"3270\" === \"on\") {\n                            api.fail(\"Checkbox did not have state 3270\");\n                        }\n                    } else if(!(elem.value === \"3270\")) {\n                        api.fail(\"Element did not have value 3270\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#poststed')[0] : document.querySelector('#poststed');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Asker\" === \"on\" || \"Asker\" === \"off\")) {\n                        if(elem.checked && \"Asker\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Asker\");\n                        } else if(!elem.checked && \"Asker\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Asker\");\n                        }\n                    } else if(!(elem.value === \"Asker\")) {\n                        api.fail(\"Element did not have value Asker\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#telefonnr')[0] : document.querySelector('#telefonnr');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"22224444\" === \"on\" || \"22224444\" === \"off\")) {\n                        if(elem.checked && \"22224444\" === \"off\") {\n                            api.fail(\"Checkbox did not have state 22224444\");\n                        } else if(!elem.checked && \"22224444\" === \"on\") {\n                            api.fail(\"Checkbox did not have state 22224444\");\n                        }\n                    } else if(!(elem.value === \"22224444\")) {\n                        api.fail(\"Element did not have value 22224444\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#passord')[0] : document.querySelector('#passord');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"HeiHei\" === \"on\" || \"HeiHei\" === \"off\")) {\n                        if(elem.checked && \"HeiHei\" === \"off\") {\n                            api.fail(\"Checkbox did not have state HeiHei\");\n                        } else if(!elem.checked && \"HeiHei\" === \"on\") {\n                            api.fail(\"Checkbox did not have state HeiHei\");\n                        }\n                    } else if(!(elem.value === \"HeiHei\")) {\n                        api.fail(\"Element did not have value HeiHei\");\n                    }"
+        }
+    ]
+}
