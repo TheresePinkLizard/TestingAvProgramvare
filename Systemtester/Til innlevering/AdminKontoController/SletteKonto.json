@@ -1,0 +1,61 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [
+        {
+            "description": "Loading of \"/adminEndreKonto/API/initDB.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "/adminEndreKonto/API/initDB.html"
+        },
+        {
+            "description": "pause",
+            "target": {},
+            "type": "javascript",
+            "javaScript": "api.startAsyncSyntheticEvent(); \n                setTimeout(() => {api.finish()}, 1000);"
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/adminEndreKonto.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/adminEndreKonto.html"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Slett\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#kontonummer1')[0] : document.querySelector('#kontonummer1');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"null\" === \"on\" || \"null\" === \"off\")) {\n                        if(elem.checked && \"null\" === \"off\") {\n                            api.fail(\"Checkbox did not have state null\");\n                        } else if(!elem.checked && \"null\" === \"on\") {\n                            api.fail(\"Checkbox did not have state null\");\n                        }\n                    } else if(!(elem.value === \"null\")) {\n                        api.fail(\"Element did not have value null\");\n                    }"
+        }
+    ]
+}
