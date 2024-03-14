@@ -9,13 +9,13 @@
     "version": "1.0",
     "events": [
         {
-            "description": "Loading of \"/adminEndreKonto/API/initDB.html\"",
+            "description": "Loading of \"/initDB\"",
             "wait": {
                 "waitFor": "page_complete"
             },
             "target": {},
             "type": "navigate",
-            "url": "/adminEndreKonto/API/initDB.html"
+            "url": "/initDB"
         },
         {
             "description": "pause",
@@ -24,13 +24,13 @@
             "javaScript": "api.startAsyncSyntheticEvent(); \n                setTimeout(() => {api.finish()}, 1000);"
         },
         {
-            "description": "Loading of \"http://localhost:8080/adminEndreKonto.html\"",
+            "description": "Loading of \"http://localhost:8080/adminRegisterKonto.html\"",
             "wait": {
                 "waitFor": "page_complete"
             },
             "target": {},
             "type": "navigate",
-            "url": "http://localhost:8080/adminEndreKonto.html"
+            "url": "http://localhost:8080/adminRegisterKonto.html"
         },
         {
             "description": "click",
@@ -41,7 +41,7 @@
                 "locators": [
                     {
                         "type": "css",
-                        "value": "#valuta1"
+                        "value": "#kontoNr"
                     }
                 ]
             },
@@ -49,7 +49,7 @@
             "button": 0
         },
         {
-            "description": "type USD",
+            "description": "type 12345678901",
             "wait": {
                 "waitFor": "page_complete"
             },
@@ -57,33 +57,17 @@
                 "locators": [
                     {
                         "type": "css",
-                        "value": "#valuta1"
+                        "value": "#kontoNr"
                     }
                 ]
             },
             "type": "keystrokes",
-            "textValue": "USD",
+            "textValue": "12345678901",
             "simulateBlurEvent": true,
             "masked": false
         },
         {
-            "description": "click",
-            "wait": {
-                "waitFor": "page_complete"
-            },
-            "target": {
-                "locators": [
-                    {
-                        "type": "dom",
-                        "value": "document.evaluate('//div[@id=\\'endreKonto\\']/table/tbody/tr/td[4]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
-                    }
-                ]
-            },
-            "type": "click",
-            "button": 0
-        },
-        {
-            "description": "click",
+            "description": "type bsu",
             "wait": {
                 "waitFor": "page_complete"
             },
@@ -91,28 +75,14 @@
                 "locators": [
                     {
                         "type": "css",
-                        "value": "a:contains(\"Endre\")"
+                        "value": "#type"
                     }
                 ]
             },
-            "type": "click",
-            "button": 0
-        },
-        {
-            "description": "click",
-            "wait": {
-                "waitFor": "page_complete"
-            },
-            "target": {
-                "locators": [
-                    {
-                        "type": "dom",
-                        "value": "document.evaluate('//div[@id=\\'endreKonto\\']/table/tbody/tr', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
-                    }
-                ]
-            },
-            "type": "click",
-            "button": 0
+            "type": "keystrokes",
+            "textValue": "bsu",
+            "simulateBlurEvent": true,
+            "masked": false
         },
         {
             "description": "type NOK",
@@ -123,12 +93,30 @@
                 "locators": [
                     {
                         "type": "css",
-                        "value": "#valuta1"
+                        "value": "#valuta"
                     }
                 ]
             },
             "type": "keystrokes",
             "textValue": "NOK",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type 01010110523",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personnummer"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "01010110523",
             "simulateBlurEvent": true,
             "masked": false
         },
@@ -140,8 +128,8 @@
             "target": {
                 "locators": [
                     {
-                        "type": "dom",
-                        "value": "document.evaluate('//*/text()[normalize-space(.)=\\'\\']/parent::*', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                        "type": "css",
+                        "value": "#regKonto"
                     }
                 ]
             },

@@ -9,13 +9,13 @@
     "version": "1.0",
     "events": [
         {
-            "description": "Loading of \"/adminEndreKonto/API/initDB.html\"",
+            "description": "Loading of \"/initDB\"",
             "wait": {
                 "waitFor": "page_complete"
             },
             "target": {},
             "type": "navigate",
-            "url": "/adminEndreKonto/API/initDB.html"
+            "url": "/initDB"
         },
         {
             "description": "pause",
