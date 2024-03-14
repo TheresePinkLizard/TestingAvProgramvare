@@ -18,12 +18,6 @@
             "url": "http://localhost:8080/initDB"
         },
         {
-            "description": "pause",
-            "target": {},
-            "type": "javascript",
-            "javaScript": "api.startAsyncSyntheticEvent(); \n                setTimeout(() => {api.finish()}, 1000);"
-        },
-        {
             "description": "Loading of \"http://localhost:8080/\"",
             "wait": {
                 "waitFor": "page_complete"
@@ -31,6 +25,12 @@
             "target": {},
             "type": "navigate",
             "url": "http://localhost:8080/"
+        },
+        {
+            "description": "pause",
+            "target": {},
+            "type": "javascript",
+            "javaScript": "api.startAsyncSyntheticEvent(); \n                setTimeout(() => {api.finish()}, 1000);"
         },
         {
             "description": "click",
@@ -146,7 +146,16 @@
                 ]
             },
             "type": "click",
-            "button": 0,
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/utforBetalinger.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/utforBetalinger.html",
             "validate": [
                 {
                     "type": "element_match",
@@ -156,11 +165,11 @@
                         "locators": [
                             {
                                 "type": "dom",
-                                "value": "document.evaluate('//div[@id=\\'listBetalinger\\']/table/tbody/tr/td[5]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                                "value": "document.evaluate('//div[@id=\\'listBetalinger\\']/table/tbody/tr/td[4]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
                             }
                         ]
                     },
-                    "match": "Fjordkraft"
+                    "match": "100.50"
                 },
                 {
                     "type": "element_match",
@@ -170,11 +179,11 @@
                         "locators": [
                             {
                                 "type": "dom",
-                                "value": "document.evaluate('//div[@id=\\'listBetalinger\\']/table/tbody/tr[2]/td[5]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                                "value": "document.evaluate('//div[@id=\\'listBetalinger\\']/table/tbody/tr[2]/td[4]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
                             }
                         ]
                     },
-                    "match": "Skagen"
+                    "match": "400.40"
                 },
                 {
                     "type": "element_match",
@@ -184,11 +193,11 @@
                         "locators": [
                             {
                                 "type": "dom",
-                                "value": "document.evaluate('//div[@id=\\'listBetalinger\\']/table/tbody/tr[3]/td[5]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                                "value": "document.evaluate('//div[@id=\\'listBetalinger\\']/table/tbody/tr[3]/td[4]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
                             }
                         ]
                     },
-                    "match": "Husleie"
+                    "match": "5000.50"
                 }
             ]
         }

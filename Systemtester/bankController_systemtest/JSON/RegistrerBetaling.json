@@ -59,7 +59,7 @@
             "button": 0
         },
         {
-            "description": "type 105010123456",
+            "description": "type 12345678901",
             "wait": {
                 "waitFor": "page_complete"
             },
@@ -72,7 +72,7 @@
                 ]
             },
             "type": "keystrokes",
-            "textValue": "105010123456",
+            "textValue": "12345678901",
             "simulateBlurEvent": true,
             "masked": false
         },
@@ -219,12 +219,21 @@
                 "locators": [
                     {
                         "type": "css",
-                        "value": "#regBetaling"
+                        "value": "a:contains(\"Transaksjoner\")"
                     }
                 ]
             },
             "type": "click",
             "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/transaksjon.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/transaksjon.html"
         },
         {
             "description": "click",
@@ -235,21 +244,12 @@
                 "locators": [
                     {
                         "type": "css",
-                        "value": "a:contains(\"Utfør betalinger\")"
+                        "value": "#sok"
                     }
                 ]
             },
             "type": "click",
             "button": 0
-        },
-        {
-            "description": "Loading of \"http://localhost:8080/utforBetalinger.html\"",
-            "wait": {
-                "waitFor": "page_complete"
-            },
-            "target": {},
-            "type": "navigate",
-            "url": "http://localhost:8080/utforBetalinger.html"
         }
     ]
 }
