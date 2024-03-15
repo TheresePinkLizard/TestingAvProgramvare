@@ -1,0 +1,593 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [
+        {
+            "description": "Loading of \"http://localhost:8080/initDB\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/initDB"
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/"
+        },
+        {
+            "description": "pause",
+            "target": {},
+            "type": "javascript",
+            "javaScript": "api.startAsyncSyntheticEvent(); \n                setTimeout(() => {api.finish()}, 1000);"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Logg inn\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personNr"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type 01010110523",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personNr"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "01010110523",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type HeiHei",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "HeiHei",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#loggInn"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Kunde-info\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/kundeInfo.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/kundeInfo.html"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "dom",
+                        "value": "document.evaluate('//body', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type Ryan",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#fornavn"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "Ryan",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type Gosling",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#etternavn"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "Gosling",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type Olav M. Troviks vei 56",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#adresse"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "Olav M. Troviks vei 56",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type 0864",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#postnr"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "0864",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type Oslo",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#poststed"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "Oslo",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type 44442222",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#telefonnr"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "44442222",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "type NeiNei",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "NeiNei",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#endre"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/kundeInfo.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/kundeInfo.html"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Transaksjoner\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/transaksjon.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/transaksjon.html"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Kunde-info\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Logg ut\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/loggUt.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/loggUt.html"
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/loggInn.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/loggInn.html"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personNr"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type 01010110523",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#personNr"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "01010110523",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "type NeiNei",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#passord"
+                    }
+                ]
+            },
+            "type": "keystrokes",
+            "textValue": "NeiNei",
+            "simulateBlurEvent": true,
+            "masked": false
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#loggInn"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/saldo.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/saldo.html"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Kunde-info\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/kundeInfo.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/kundeInfo.html"
+        },
+        {
+            "description": "Loading of \"http://localhost:8080/kundeInfo.html\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "http://localhost:8080/kundeInfo.html"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#fornavn')[0] : document.querySelector('#fornavn');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Ryan\" === \"on\" || \"Ryan\" === \"off\")) {\n                        if(elem.checked && \"Ryan\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Ryan\");\n                        } else if(!elem.checked && \"Ryan\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Ryan\");\n                        }\n                    } else if(!(elem.value === \"Ryan\")) {\n                        api.fail(\"Element did not have value Ryan\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#etternavn')[0] : document.querySelector('#etternavn');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Gosling\" === \"on\" || \"Gosling\" === \"off\")) {\n                        if(elem.checked && \"Gosling\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Gosling\");\n                        } else if(!elem.checked && \"Gosling\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Gosling\");\n                        }\n                    } else if(!(elem.value === \"Gosling\")) {\n                        api.fail(\"Element did not have value Gosling\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#adresse')[0] : document.querySelector('#adresse');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Olav M. Troviks vei 56\" === \"on\" || \"Olav M. Troviks vei 56\" === \"off\")) {\n                        if(elem.checked && \"Olav M. Troviks vei 56\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Olav M. Troviks vei 56\");\n                        } else if(!elem.checked && \"Olav M. Troviks vei 56\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Olav M. Troviks vei 56\");\n                        }\n                    } else if(!(elem.value === \"Olav M. Troviks vei 56\")) {\n                        api.fail(\"Element did not have value Olav M. Troviks vei 56\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#postnr')[0] : document.querySelector('#postnr');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"0864\" === \"on\" || \"0864\" === \"off\")) {\n                        if(elem.checked && \"0864\" === \"off\") {\n                            api.fail(\"Checkbox did not have state 0864\");\n                        } else if(!elem.checked && \"0864\" === \"on\") {\n                            api.fail(\"Checkbox did not have state 0864\");\n                        }\n                    } else if(!(elem.value === \"0864\")) {\n                        api.fail(\"Element did not have value 0864\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#poststed')[0] : document.querySelector('#poststed');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"Oslo\" === \"on\" || \"Oslo\" === \"off\")) {\n                        if(elem.checked && \"Oslo\" === \"off\") {\n                            api.fail(\"Checkbox did not have state Oslo\");\n                        } else if(!elem.checked && \"Oslo\" === \"on\") {\n                            api.fail(\"Checkbox did not have state Oslo\");\n                        }\n                    } else if(!(elem.value === \"Oslo\")) {\n                        api.fail(\"Element did not have value Oslo\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#telefonnr')[0] : document.querySelector('#telefonnr');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"44442222\" === \"on\" || \"44442222\" === \"off\")) {\n                        if(elem.checked && \"44442222\" === \"off\") {\n                            api.fail(\"Checkbox did not have state 44442222\");\n                        } else if(!elem.checked && \"44442222\" === \"on\") {\n                            api.fail(\"Checkbox did not have state 44442222\");\n                        }\n                    } else if(!(elem.value === \"44442222\")) {\n                        api.fail(\"Element did not have value 44442222\");\n                    }"
+        },
+        {
+            "description": "assert value",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "let elem = typeof $ !== 'undefined' ? $('#passord')[0] : document.querySelector('#passord');\n                    if((elem.type === \"checkbox\" || elem.type === \"radio\") && (\"NeiNei\" === \"on\" || \"NeiNei\" === \"off\")) {\n                        if(elem.checked && \"NeiNei\" === \"off\") {\n                            api.fail(\"Checkbox did not have state NeiNei\");\n                        } else if(!elem.checked && \"NeiNei\" === \"on\") {\n                            api.fail(\"Checkbox did not have state NeiNei\");\n                        }\n                    } else if(!(elem.value === \"NeiNei\")) {\n                        api.fail(\"Element did not have value NeiNei\");\n                    }"
+        }
+    ]
+}
