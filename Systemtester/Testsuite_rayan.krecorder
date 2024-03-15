@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>Test1</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">RegistrereBetalinger</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>/registerBetaling/API/initDB.html<datalist><option>/registerBetaling/API/initDB.html</option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/registerBetaling.html<datalist><option>http://localhost:8080/registerBetaling.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=dato<datalist><option>id=dato</option><option>xpath=//input[@id='dato']</option><option>xpath=//div[3]/input</option><option>css=#dato</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=dato<datalist><option>id=dato</option><option>xpath=//input[@id='dato']</option><option>xpath=//div[3]/input</option><option>css=#dato</option></datalist></td><td>2002-02-13</td></tr>
+<tr><td>assertValue</td><td>id=dato<datalist><option>id=dato</option></datalist></td><td>2002-02-13</td></tr>
+<tr><td>click</td><td>id=tilKonto<datalist><option>id=tilKonto</option><option>xpath=//input[@id='tilKonto']</option><option>xpath=//input</option><option>css=#tilKonto</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=tilKonto<datalist><option>id=tilKonto</option><option>xpath=//input[@id='tilKonto']</option><option>xpath=//input</option><option>css=#tilKonto</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=tilKonto<datalist><option>id=tilKonto</option><option>xpath=//input[@id='tilKonto']</option><option>xpath=//input</option><option>css=#tilKonto</option><option>id=tilKonto</option></datalist></td><td>1302024123</td></tr>
+<tr><td>assertValue</td><td>id=tilKonto<datalist><option>id=tilKonto</option></datalist></td><td>1302024123</td></tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Betalingsdato:'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Betalingsdato:'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Kontonummeret må være 11 siffer'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Melding:'])[1]/preceding::div[1]</option><option>xpath=//div[4]</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=tilKonto<datalist><option>id=tilKonto</option><option>xpath=//input[@id='tilKonto']</option><option>xpath=//input</option><option>css=#tilKonto</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=tilKonto<datalist><option>id=tilKonto</option><option>xpath=//input[@id='tilKonto']</option><option>xpath=//input</option><option>css=#tilKonto</option></datalist></td><td>13020241231</td></tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Registrer betalinger'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Registrer betalinger'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg ut'])[1]/following::div[2]</option><option>xpath=//div[2]/div</option><option>css=div.row</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=belop<datalist><option>id=belop</option><option>xpath=//input[@id='belop']</option><option>xpath=//div[4]/input</option><option>css=#belop</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=belop<datalist><option>id=belop</option><option>xpath=//input[@id='belop']</option><option>xpath=//div[4]/input</option><option>css=#belop</option></datalist></td><td>100</td></tr>
+<tr><td>click</td><td>id=regBetaling<datalist><option>id=regBetaling</option><option>xpath=//button[@id='regBetaling']</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Melding:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Beløp:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//*/text()[normalize-space(.)='Registrer betaling']/parent::*</option><option>xpath=//div[2]/button</option><option>css=#regBetaling</option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">UtføreBetalinger</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>/utforBetaling/API/initDB.html<datalist><option>/utforBetaling/API/initDB.html</option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/utforBetalinger.html<datalist><option>http://localhost:8080/utforBetalinger.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//div[@id='listBetalinger']/table/tbody/tr/td[6]/button<datalist><option>xpath=//div[@id='listBetalinger']/table/tbody/tr/td[6]/button</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Fjordkraft'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Melding'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Skagen'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Utfør betaling'])[2]/preceding::button[1]</option><option>xpath=//*/text()[normalize-space(.)='Utfør betaling']/parent::*</option><option>xpath=//td[6]/button</option><option>css=button.btn.btn-success</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//div[@id='listBetalinger']/table/tbody/tr[2]/td[6]/button<datalist><option>xpath=//div[@id='listBetalinger']/table/tbody/tr[2]/td[6]/button</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Husleie'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Utfør betaling'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//tr[2]/td[6]/button</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//div[@id='listBetalinger']/table/tbody/tr/td[6]/button<datalist><option>xpath=//div[@id='listBetalinger']/table/tbody/tr/td[6]/button</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Skagen'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Melding'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//*/text()[normalize-space(.)='Utfør betaling']/parent::*</option><option>xpath=//td[6]/button</option><option>css=button.btn.btn-success</option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">slett1og1kunde</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/adminKunde.html<datalist><option>http://localhost:8080/adminKunde.html</option></datalist></td><td></td></tr>
+<tr><td>chooseOkOnNextConfirmation</td><td><datalist></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Slett<datalist><option>link=Slett</option><option>xpath=//a[contains(text(),'Slett')]</option><option>xpath=//a[@onclick='slettKunde(1)']</option><option>xpath=//div[@id='listKunde']/table/tbody/tr/td[10]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[3]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[3]/preceding::a[2]</option><option>xpath=//td[10]/a</option><option>css=a.btn.btn-danger</option></datalist></td><td></td></tr>
+<tr><td>chooseOkOnNextConfirmation</td><td><datalist></datalist></td><td></td></tr>
+<tr><td>assertConfirmation</td><td>Slett kunde med personnummer 01010110523<datalist><option>Slett kunde med personnummer 01010110523</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Slett<datalist><option>link=Slett</option><option>xpath=//a[contains(text(),'Slett')]</option><option>xpath=//a[@onclick='slettKunde(1)']</option><option>xpath=//div[@id='listKunde']/table/tbody/tr/td[10]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::a[1]</option><option>xpath=//td[10]/a</option><option>css=a.btn.btn-danger</option></datalist></td><td></td></tr>
+<tr><td>assertConfirmation</td><td>Slett kunde med personnummer 12345678901<datalist><option>Slett kunde med personnummer 12345678901</option></datalist></td><td></td></tr>
+</tbody></table>
+</body>
+</html>
