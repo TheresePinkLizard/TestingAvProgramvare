@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>SikkerhetsController</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">FeilPassordOgBruker</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/index.html<datalist><option>http://localhost:8080/index.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logg inn<datalist><option>link=Logg inn</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Velkommen til Nettbanken i testingsfaget'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn Admin'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg inn']/parent::*</option><option>xpath=//a[contains(@href, 'loggInn.html')]</option><option>xpath=//div[2]/a</option><option>css=a.btn.btn-success</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInn.html<datalist><option>http://localhost:8080/loggInn.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=personNr<datalist><option>id=personNr</option><option>xpath=//input[@id='personNr']</option><option>xpath=//input</option><option>css=#personNr</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=personNr<datalist><option>id=personNr</option><option>xpath=//input[@id='personNr']</option><option>xpath=//input</option><option>css=#personNr</option></datalist></td><td>12345678900</td></tr>
+<tr><td>click</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td>HadeHade</td></tr>
+<tr><td>click</td><td>id=loggInn<datalist><option>id=loggInn</option><option>xpath=//button[@id='loggInn']</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Passord:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Personnummer:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//div[2]/button</option><option>css=#loggInn</option></datalist></td><td></td></tr>
+<tr><td>assertText</td><td>id=feilMelding<datalist><option>id=feilMelding</option></datalist></td><td>Feil personnummer / passord!</td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">FeilPassordOgBrukerAdmin</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/Index.html<datalist><option>http://localhost:8080/Index.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logg inn Admin<datalist><option>link=Logg inn Admin</option><option>xpath=//a[contains(text(),'Logg inn Admin')]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg ut'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Kunde-info'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Velkommen til Nettbanken i testingsfaget'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg inn Admin']/parent::*</option><option>xpath=//a[contains(@href, 'loggInnAdmin.html')]</option><option>xpath=//body/a</option><option>css=a.btn.btn-default</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInnAdmin.html<datalist><option>http://localhost:8080/loggInnAdmin.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=bruker<datalist><option>id=bruker</option><option>xpath=//input[@id='bruker']</option><option>xpath=//input</option><option>css=#bruker</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=bruker<datalist><option>id=bruker</option><option>xpath=//input[@id='bruker']</option><option>xpath=//input</option><option>css=#bruker</option></datalist></td><td>Roger</td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td>RogerThat</td></tr>
+<tr><td>click</td><td>id=loggInn<datalist><option>id=loggInn</option><option>xpath=//input[@id='loggInn']</option><option>xpath=//form/input</option><option>css=#loggInn</option></datalist></td><td></td></tr>
+<tr><td>assertText</td><td>id=feilMelding<datalist><option>id=feilMelding</option></datalist></td><td>Feil personnummer / passord!</td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">TestLoggUt</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/index.html<datalist><option>http://localhost:8080/index.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logg inn<datalist><option>link=Logg inn</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Velkommen til Nettbanken i testingsfaget'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn Admin'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg inn']/parent::*</option><option>xpath=//a[contains(@href, 'loggInn.html')]</option><option>xpath=//div[2]/a</option><option>css=a.btn.btn-success</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInn.html<datalist><option>http://localhost:8080/loggInn.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=personNr<datalist><option>id=personNr</option><option>xpath=//input[@id='personNr']</option><option>xpath=//input</option><option>css=#personNr</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=personNr<datalist><option>id=personNr</option><option>xpath=//input[@id='personNr']</option><option>xpath=//input</option><option>css=#personNr</option></datalist></td><td>01010110523</td></tr>
+<tr><td>click</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td>HeiHei</td></tr>
+<tr><td>click</td><td>id=loggInn<datalist><option>id=loggInn</option><option>xpath=//button[@id='loggInn']</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Passord:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Personnummer:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//div[2]/button</option><option>css=#loggInn</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/saldo.html<datalist><option>http://localhost:8080/saldo.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logg ut<datalist><option>link=Logg ut</option><option>xpath=//a[contains(text(),'Logg ut')]</option><option>xpath=//div[@id='navbar-main']/ul[2]/li/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Kunde-info'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Transaksjoner'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Saldo for personnummer 01010110523'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Kontonr'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg ut']/parent::*</option><option>xpath=//a[contains(@href, 'loggUt.html')]</option><option>xpath=//ul[2]/li/a</option><option>css=ul.nav.navbar-nav.navbar-right > li > a</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggUt.html<datalist><option>http://localhost:8080/loggUt.html</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInn.html<datalist><option>http://localhost:8080/loggInn.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Kunde-info<datalist><option>link=Kunde-info</option><option>xpath=//a[contains(text(),'Kunde-info')]</option><option>xpath=//div[@id='navbar-main']/ul/li[5]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Transaksjoner'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Utfør betalinger'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg ut'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Kunde-info']/parent::*</option><option>xpath=//a[contains(@href, 'kundeInfo.html')]</option><option>xpath=//li[5]/a</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/kundeInfo.html<datalist><option>http://localhost:8080/kundeInfo.html</option></datalist></td><td></td></tr>
+<tr><td>assertTextNotPresent</td><td>id=fornavn<datalist><option>id=heading</option><option>id=fornavn</option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">TestLoggInn</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/index.html<datalist><option>http://localhost:8080/index.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logg inn<datalist><option>link=Logg inn</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Velkommen til Nettbanken i testingsfaget'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn Admin'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg inn']/parent::*</option><option>xpath=//a[contains(@href, 'loggInn.html')]</option><option>xpath=//div[2]/a</option><option>css=a.btn.btn-success</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInn.html<datalist><option>http://localhost:8080/loggInn.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=personNr<datalist><option>id=personNr</option><option>xpath=//input[@id='personNr']</option><option>xpath=//input</option><option>css=#personNr</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=personNr<datalist><option>id=personNr</option><option>xpath=//input[@id='personNr']</option><option>xpath=//input</option><option>css=#personNr</option></datalist></td><td>01010110523</td></tr>
+<tr><td>click</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td>HeiHei</td></tr>
+<tr><td>click</td><td>id=loggInn<datalist><option>id=loggInn</option><option>xpath=//button[@id='loggInn']</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Passord:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Personnummer:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//div[2]/button</option><option>css=#loggInn</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/saldo.html<datalist><option>http://localhost:8080/saldo.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Kunde-info<datalist><option>link=Kunde-info</option><option>xpath=//a[contains(text(),'Kunde-info')]</option><option>xpath=//div[@id='navbar-main']/ul/li[5]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Transaksjoner'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Utfør betalinger'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg ut'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Saldo for personnummer 01010110523'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Kunde-info']/parent::*</option><option>xpath=//a[contains(@href, 'kundeInfo.html')]</option><option>xpath=//li[5]/a</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/kundeInfo.html<datalist><option>http://localhost:8080/kundeInfo.html</option></datalist></td><td></td></tr>
+<tr><td>assertValue</td><td>id=fornavn<datalist><option>id=fornavn</option></datalist></td><td>Lene</td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">TestLoggInnAdmin</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/index.html<datalist><option>http://localhost:8080/index.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logg inn Admin<datalist><option>link=Logg inn Admin</option><option>xpath=//a[contains(text(),'Logg inn Admin')]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg ut'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Kunde-info'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Velkommen til Nettbanken i testingsfaget'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg inn Admin']/parent::*</option><option>xpath=//a[contains(@href, 'loggInnAdmin.html')]</option><option>xpath=//body/a</option><option>css=a.btn.btn-default</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInnAdmin.html<datalist><option>http://localhost:8080/loggInnAdmin.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=bruker<datalist><option>id=bruker</option><option>xpath=//input[@id='bruker']</option><option>xpath=//input</option><option>css=#bruker</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=bruker<datalist><option>id=bruker</option><option>xpath=//input[@id='bruker']</option><option>xpath=//input</option><option>css=#bruker</option></datalist></td><td>Admin</td></tr>
+<tr><td>click</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td>Admin</td></tr>
+<tr><td>click</td><td>id=loggInn<datalist><option>id=loggInn</option><option>xpath=//input[@id='loggInn']</option><option>xpath=//form/input</option><option>css=#loggInn</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminKunde.html<datalist><option>http://localhost:8080/adminKunde.html</option></datalist></td><td></td></tr>
+<tr><td>assertText</td><td>link=Nettbank : Admin<datalist><option>link=Nettbank : Admin</option></datalist></td><td>Nettbank : Admin</td></tr>
+</tbody></table>
+</body>
+</html>

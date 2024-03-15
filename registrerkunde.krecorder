@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>AdminKundeKontroller</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">RegistrerKunde</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn'])[1]/preceding::a[1]<datalist><option>link=Logg inn Admin</option><option>xpath=//a[contains(text(),'Logg inn Admin')]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg ut'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Kunde-info'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Velkommen til Nettbanken i testingsfaget'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Logg inn'])[1]/preceding::a[1]</option><option>xpath=//*/text()[normalize-space(.)='Logg inn Admin']/parent::*</option><option>xpath=//a[contains(@href, 'loggInnAdmin.html')]</option><option>xpath=//body/a</option><option>css=a.btn.btn-default</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/loggInnAdmin.html<datalist><option>http://localhost:8080/loggInnAdmin.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=bruker<datalist><option>id=bruker</option><option>xpath=//input[@id='bruker']</option><option>xpath=//input</option><option>css=#bruker</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=bruker<datalist><option>id=bruker</option><option>xpath=//input[@id='bruker']</option><option>xpath=//input</option><option>css=#bruker</option></datalist></td><td>Admin</td></tr>
+<tr><td>click</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[2]/div/input</option><option>css=#passord</option></datalist></td><td>Admin</td></tr>
+<tr><td>click</td><td>id=loggInn<datalist><option>id=loggInn</option><option>xpath=//input[@id='loggInn']</option><option>xpath=//form/input</option><option>css=#loggInn</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminKunde.html<datalist><option>http://localhost:8080/adminKunde.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Registrer kunde<datalist><option>link=Registrer kunde</option><option>xpath=//a[contains(text(),'Registrer kunde')]</option><option>xpath=//div[@id='navbar-main']/ul/li/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre kunde'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Register konto'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Registrer kunde']/parent::*</option><option>xpath=//a[contains(@href, 'adminRegisterKunde.html')]</option><option>xpath=//li/a</option><option>css=li > a</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminRegisterKunde.html<datalist><option>http://localhost:8080/adminRegisterKunde.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=personnummer<datalist><option>id=personnummer</option><option>xpath=//input[@id='personnummer']</option><option>xpath=//input</option><option>css=#personnummer</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=personnummer<datalist><option>id=personnummer</option><option>xpath=//input[@id='personnummer']</option><option>xpath=//input</option><option>css=#personnummer</option></datalist></td><td>11080399999</td></tr>
+<tr><td>click</td><td>id=fornavn<datalist><option>id=fornavn</option><option>xpath=//input[@id='fornavn']</option><option>xpath=//div[2]/input</option><option>css=#fornavn</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=fornavn<datalist><option>id=fornavn</option><option>xpath=//input[@id='fornavn']</option><option>xpath=//div[2]/input</option><option>css=#fornavn</option></datalist></td><td>Andreas</td></tr>
+<tr><td>click</td><td>id=etternavn<datalist><option>id=etternavn</option><option>xpath=//input[@id='etternavn']</option><option>xpath=//div[3]/input</option><option>css=#etternavn</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=etternavn<datalist><option>id=etternavn</option><option>xpath=//input[@id='etternavn']</option><option>xpath=//div[3]/input</option><option>css=#etternavn</option></datalist></td><td>Jensen</td></tr>
+<tr><td>click</td><td>id=adresse<datalist><option>id=adresse</option><option>xpath=//input[@id='adresse']</option><option>xpath=//div[4]/input</option><option>css=#adresse</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=adresse<datalist><option>id=adresse</option><option>xpath=//input[@id='adresse']</option><option>xpath=//div[4]/input</option><option>css=#adresse</option></datalist></td><td>Olav Birkeveien 76</td></tr>
+<tr><td>click</td><td>id=postnr<datalist><option>id=postnr</option><option>xpath=//input[@id='postnr']</option><option>xpath=//div[5]/input</option><option>css=#postnr</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=postnr<datalist><option>id=postnr</option><option>xpath=//input[@id='postnr']</option><option>xpath=//div[5]/input</option><option>css=#postnr</option></datalist></td><td>0899</td></tr>
+<tr><td>click</td><td>id=poststed<datalist><option>id=poststed</option><option>xpath=//input[@id='poststed']</option><option>xpath=//div[6]/input</option><option>css=#poststed</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=poststed<datalist><option>id=poststed</option><option>xpath=//input[@id='poststed']</option><option>xpath=//div[6]/input</option><option>css=#poststed</option></datalist></td><td>Rogerstad</td></tr>
+<tr><td>click</td><td>id=telefonnr<datalist><option>id=telefonnr</option><option>xpath=//input[@id='telefonnr']</option><option>xpath=//div[7]/input</option><option>css=#telefonnr</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=telefonnr<datalist><option>id=telefonnr</option><option>xpath=//input[@id='telefonnr']</option><option>xpath=//div[7]/input</option><option>css=#telefonnr</option></datalist></td><td>98679999</td></tr>
+<tr><td>click</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[8]/input</option><option>css=#passord</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=passord<datalist><option>id=passord</option><option>xpath=//input[@id='passord']</option><option>xpath=//div[8]/input</option><option>css=#passord</option></datalist></td><td>HeiHei</td></tr>
+<tr><td>click</td><td>id=regKunde<datalist><option>id=regKunde</option><option>xpath=//button[@id='regKunde']</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Passord:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Telefonnr:'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Katalon Recorder is recording ...'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/preceding::button[1]</option><option>xpath=//div[2]/button</option><option>css=#regKunde</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Endre kunde<datalist><option>link=Endre kunde</option><option>xpath=//a[contains(text(),'Endre kunde')]</option><option>xpath=//div[@id='navbar-main']/ul/li[2]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Registrer kunde'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Register konto'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre konto'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Endre kunde']/parent::*</option><option>xpath=//a[contains(@href, 'adminKunde.html')]</option><option>xpath=//li[2]/a</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminKunde.html<datalist><option>http://localhost:8080/adminKunde.html</option></datalist></td><td></td></tr>
+<tr><td>assertText</td><td>xpath=//body<datalist><option>xpath=//body</option></datalist></td><td>Andreas</td></tr>
+</tbody></table>
+</body>
+</html>
