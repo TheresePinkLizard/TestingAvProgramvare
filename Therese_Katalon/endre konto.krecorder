@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>endre konto</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">Endre kontotype</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>/initDB<datalist><option>/adminEndreKonto.html</option><option>/adminEndreKonto/API/initDB.html</option><option>/initDB</option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminEndreKonto.html<datalist><option>http://localhost:8080/adminEndreKonto.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//a[@onclick='endreKonto(2)']<datalist><option>xpath=//a[@onclick='endreKonto(2)']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[6]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[3]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[4]/preceding::a[2]</option><option>xpath=//tr[2]/td[6]/a</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=type2<datalist><option>id=type2</option><option>xpath=//input[@id='type2']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]/input</option><option>xpath=//tr[2]/td[3]/input</option><option>css=#type2</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//div[@id='endreKonto']/table/tbody/tr[2]<datalist><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/following::tr[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/following::tr[1]</option><option>xpath=//tr[2]</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=type2<datalist><option>id=type2</option><option>xpath=//input[@id='type2']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]/input</option><option>xpath=//tr[2]/td[3]/input</option><option>css=#type2</option></datalist></td><td>Bsu</td></tr>
+<tr><td>click</td><td>xpath=//*/text()[normalize-space(.)='']/parent::*<datalist><option>xpath=//*/text()[normalize-space(.)='']/parent::*</option><option>xpath=//html</option><option>css=html</option></datalist></td><td></td></tr>
+<tr><td>AssertValue</td><td>id=type2<datalist><option>id=type2</option></datalist></td><td>Bsu</td></tr>
+<tr><td>click</td><td>id=type2<datalist><option>id=type2</option><option>xpath=//input[@id='type2']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]/input</option><option>xpath=//tr[2]/td[3]/input</option><option>css=#type2</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//a[@onclick='endreKonto(2)']<datalist><option>xpath=//a[@onclick='endreKonto(2)']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[6]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[3]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[4]/preceding::a[2]</option><option>xpath=//tr[2]/td[6]/a</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=type2<datalist><option>id=type2</option><option>xpath=//input[@id='type2']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]/input</option><option>xpath=//tr[2]/td[3]/input</option><option>css=#type2</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=type2<datalist><option>id=type2</option><option>xpath=//input[@id='type2']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]/input</option><option>xpath=//tr[2]/td[3]/input</option><option>css=#type2</option></datalist></td><td>Sparekonto</td></tr>
+<tr><td>click</td><td>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]<datalist><option>xpath=//div[@id='endreKonto']/table/tbody/tr[2]/td[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/following::td[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/following::td[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[3]/preceding::td[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[3]/preceding::td[4]</option><option>xpath=//tr[2]/td[3]</option></datalist></td><td></td></tr>
+<tr><td>AssertValue</td><td>id=type2<datalist><option>id=type2</option></datalist></td><td>Sparekonto</td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">Endre valuta</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>/initDB<datalist><option>/adminEndreKonto/API/initDB.html</option><option>/initDB</option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminEndreKonto.html<datalist><option>http://localhost:8080/adminEndreKonto.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=valuta1<datalist><option>id=valuta1</option><option>xpath=//input[@id='valuta1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[4]/input</option><option>xpath=//td[4]/input</option><option>css=#valuta1</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=valuta1<datalist><option>id=valuta1</option><option>xpath=//input[@id='valuta1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[4]/input</option><option>xpath=//td[4]/input</option><option>css=#valuta1</option></datalist></td><td>USD</td></tr>
+<tr><td>AssertValue</td><td>id=valuta1<datalist><option>id=valuta1</option></datalist></td><td>USD</td></tr>
+<tr><td>click</td><td>xpath=//div[@id='endreKonto']/table/tbody/tr/td[4]<datalist><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::td[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[1]/following::td[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/preceding::td[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/preceding::td[3]</option><option>xpath=//td[4]</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Endre<datalist><option>link=Endre</option><option>xpath=//a[@onclick='endreKonto(1)']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[6]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[3]/preceding::a[2]</option><option>xpath=//td[6]/a</option><option>css=a.btn.btn-success</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//div[@id='endreKonto']/table/tbody/tr<datalist><option>xpath=//div[@id='endreKonto']/table/tbody/tr</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::tr[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[1]/following::tr[1]</option><option>xpath=//tbody/tr</option><option>css=tbody > tr</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=valuta1<datalist><option>id=valuta1</option><option>xpath=//input[@id='valuta1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[4]/input</option><option>xpath=//td[4]/input</option><option>css=#valuta1</option></datalist></td><td>NOK</td></tr>
+<tr><td>AssertValue</td><td>id=valuta1<datalist><option>id=valuta1</option></datalist></td><td>NOK</td></tr>
+<tr><td>click</td><td>xpath=//*/text()[normalize-space(.)='']/parent::*<datalist><option>xpath=//*/text()[normalize-space(.)='']/parent::*</option><option>xpath=//html</option><option>css=html</option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">Endre Saldo</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>/initDB<datalist><option>/adminEndreKonto/API/initDB.html</option><option>/initDB</option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>http://localhost:8080/adminEndreKonto.html<datalist><option>http://localhost:8080/adminEndreKonto.html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=saldo1<datalist><option>id=saldo1</option><option>xpath=//input[@id='saldo1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[2]/input</option><option>xpath=//td[2]/input</option><option>css=#saldo1</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//div[@id='endreKonto']/table/tbody/tr/td[2]<datalist><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::td[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[1]/following::td[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[2]/preceding::td[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/preceding::td[5]</option><option>xpath=//td[2]</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=saldo1<datalist><option>id=saldo1</option><option>xpath=//input[@id='saldo1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[2]/input</option><option>xpath=//td[2]/input</option><option>css=#saldo1</option></datalist></td><td>10.00</td></tr>
+<tr><td>AssertValue</td><td>id=saldo1<datalist><option>id=saldo1</option></datalist></td><td>10.00</td></tr>
+<tr><td>click</td><td>xpath=//*/text()[normalize-space(.)='']/parent::*<datalist><option>xpath=//*/text()[normalize-space(.)='']/parent::*</option><option>xpath=//html</option><option>css=html</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Endre<datalist><option>link=Endre</option><option>xpath=//a[@onclick='endreKonto(1)']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[6]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Slett'])[2]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Endre'])[3]/preceding::a[2]</option><option>xpath=//td[6]/a</option><option>css=a.btn.btn-success</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=saldo1<datalist><option>id=saldo1</option><option>xpath=//input[@id='saldo1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[2]/input</option><option>xpath=//td[2]/input</option><option>css=#saldo1</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=saldo1<datalist><option>id=saldo1</option><option>xpath=//input[@id='saldo1']</option><option>xpath=//div[@id='endreKonto']/table/tbody/tr/td[2]/input</option><option>xpath=//td[2]/input</option><option>css=#saldo1</option></datalist></td><td>100500.00</td></tr>
+<tr><td>AssertValue</td><td>id=saldo1<datalist><option>id=saldo1</option></datalist></td><td>100500.00</td></tr>
+<tr><td>click</td><td>xpath=//*/text()[normalize-space(.)='']/parent::*<datalist><option>xpath=//*/text()[normalize-space(.)='']/parent::*</option><option>xpath=//html</option><option>css=html</option></datalist></td><td></td></tr>
+</tbody></table>
+</body>
+</html>
